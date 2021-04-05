@@ -1,0 +1,367 @@
+@extends('frontend.layouts.app')
+
+@section('content')
+<link rel="stylesheet" href="{{ asset('frontend/css/home.css') }}">
+    <section style="padding-top: 49px">
+        <div class="section--default">
+            <div class="gallery gallery-responsive portfolio_slider">
+                <div class="inner"><img src="{{ asset('frontend/images/banner-1.webp') }}"></div>
+                <div class="inner"><img src="{{ asset('frontend/images/banner-2.webp') }}"></div>
+                <div class="inner"><img src="{{ asset('frontend/images/banner-3.webp') }}"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        @foreach($categories as $category)
+            @if(!empty($category->products))
+            <div class="container section--default mt-5">
+                <div class="wrap_title mb__30 des_title_2">
+                    <h3 class="sections-title tc pr flex fl_center al_center fs__24 title_2">
+                        <span class="mr__10 ml__10 text-uppercase">{{ $category->name }}</span>
+                    </h3>
+                    <span class="dn tt_divider">
+                        <span></span>
+                        <i class="dn clprfalse title_2 la-gem"></i>
+                        <span> </span>
+                    </span>
+                    <div class="text-center"><span class="section-subtitle db sub-title tc">{{ $category->description }}</span></div>
+                </div>
+                <!-- product -->
+                <div class="row">
+                    @foreach($category->products->take(8) as $product)
+                        <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                            <div class="home--product">
+                                <a  href="{{ route('product', ['slug' => $product->slug]) }}">
+                                    <div class="home--product__img">
+                                        <img src="{{ asset($product->thumbnail) }}" alt="Img" class="img-responsive" />
+                                        @if($product->cost)
+                                            <span class="btn btn-km">{{ number_format(($product->price) - ($product->cost)) }}đ</span>
+                                        @endif
+                                    </div>
+                                </a>
+                                <div class="home--product__text">
+                                    <div class="home--product__title">
+                                        <span><a class="home--product__name" href="#">{{ $product->name }}</a></span>
+                                    </div>
+                                    <div class="home--product__description">
+                                        <p class="home--product__location">
+                                            <strong>Giá:</strong>
+                                            <span class="mr-2">{{ number_format($product->price) }}đ</span>
+                                            @if($product->cost)
+                                                <del>{{ number_format($product->cost) }}đ</del>
+                                            @endif
+                                        </p>
+                                        <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                        <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                        <p class="mt-1"></p>
+                                        <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="mt-3">
+                    <div class="home--product__view">
+                        <a href="{{ route('category', ['slug' => $category->slug]) }}" class="float-right btn btn-custom btn-sm color--link mb-1">
+                            Xem tất cả
+                        </a>   
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endforeach
+    </section>
+    <section>
+        <div class="container section--default mt-5">
+            <div class="wrap_title mb__30 des_title_2">
+                <h3 class="sections-title tc pr flex fl_center al_center fs__24 title_2">
+                    <span class="mr__10 ml__10 text-uppercase">sản phẩm bán chạy</span>
+                </h3>
+                <span class="dn tt_divider">
+                    <span></span>
+                    <i class="dn clprfalse title_2 la-gem"></i>
+                    <span> </span>
+                </span>
+                <div class="text-center"><span class="section-subtitle db sub-title tc">Các sản phẩm bán chạy mới nhất</span></div>
+            </div>
+            <div class="row">
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp1.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp2.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                       
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp3.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                       
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp4.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                       
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp1.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp2.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                       
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp3.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                       
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                    <div class="home--product">
+                        <a  href="#">
+                            <div class="home--product__img">
+                                <img src="{{ asset('frontend/images/sp4.jpg') }}" alt="Img" class="img-responsive" />
+                                <span class="btn btn-km">Giảm 900,000đ</span>
+                            </div>
+                        </a>
+                       
+                        <div class="home--product__text">
+                            <div class="home--product__title">
+                                <span><a class="home--product__name" href="#">iPhone 12 Pro Max I Chính hãng VN/A</a></span>
+                            </div>
+                            <div class="home--product__description">
+                                <p class="home--product__location">
+                                    <strong>Giá:</strong> 
+                                    <span class="mr-2">25,000,000 đ</span>
+                                    <del>26,300,000 đ</del>
+                                </p>
+                                <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                <p class="mt-1"></p>
+                                <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <div class="home--product__view">
+                    <a href="#" class="float-right btn btn-custom btn-sm color--link mb-1">
+                        Xem tất cả
+                    </a>   
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
+@section('script')
+<script src="{{ asset('backend/dist/js/validation-data.js') }}"></script>
+<script>
+        $('.gallery-responsive').slick({
+    dots: false,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    responsive: [
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ]
+    });
+    $('.slick-prev').hide();
+    $('.slick-next').hide();
+    // ssssssssss
+    let indexOpen = 0;
+
+let btnTab = document.querySelectorAll('.nav-tab ul li button');
+let contentTab = document.querySelectorAll('.content-tab');
+
+function tabCurrent(thisTab) {
+    let idCurrent = thisTab.dataset.tab;
+    
+    for (let i = 0; i < btnTab.length; i++) {
+        btnTab[i].classList.remove('tab-current');
+    }
+    thisTab.classList.add('tab-current');
+  
+    for (let i = 0; i < contentTab.length; i++) {
+      if (idCurrent === contentTab[i].id) {
+        contentTab[i].classList.add('current-content-tab');
+      } else {
+        contentTab[i].classList.remove('current-content-tab');
+      }
+    }
+}
+
+for (let i = 0, len = btnTab.length; i < len; i++) {
+  btnTab[i].onclick = function() {
+   tabCurrent(this);
+  }
+}
+
+tabCurrent(btnTab[indexOpen]);
+</script>
+@endsection
