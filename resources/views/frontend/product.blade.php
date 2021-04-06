@@ -6,10 +6,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <section>
-    <div class="container section--default">
-            <div class="row">
-                <div class="col-lg-5 col-sm-4 col-xs-12">
+        <div class="container section--default">
+            <div class="bg-qc row mb-3">
+                <div class="col-md-6"><img style="border-radius: 6px" src="{{ asset('frontend/images/background/bg-qc-1.png') }}" alt=""></div>
+                <div class="col-md-6"><img style="border-radius: 6px" src="{{ asset('frontend/images/background/bg-qc-2.png') }}" alt=""></div>
+            </div>
+            <div>
                 <span style="font-size: 24px">{{ $product->name }}</span>
+                <span class="product attribute sku" style="font-size: 13px;color: #808080">( No: {{ $product->sku }})
+            </span>
+            </div>
+            
+            <div class="product--date__content">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                </svg>
+                <span class="product--date__text">{{ date('d/m/Y', strtotime($product->created_at)) }}</span>
+                <span class="" style="font-size: 13px;position: absolute; left: 100px; color: #808080">{{ $commentsTotal }} Hỏi đáp &amp; tư vấn</span>
+                <span class="rating" style="font-size: 13px;position: absolute; left: 230px; color: #808080">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i id="five" class="fa fa-star"></i>
+                    <small style="color: #333;" class="font-weight-bold">(4.5/5)</small>
+                </span>
+                
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-4 col-sm-4 col-xs-12">
                     <div class="wrap-image-pro">
                         @foreach($product->images as $images)
                             <img src="{{ asset($images->url) }}" alt="">
@@ -21,33 +47,158 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-lg-7 col-sm-8 col-xs-12">
+                <div class="col-lg-5 col-sm-5 col-xs-12">
                     <p class="wrap-price-detail">
                         <span class="price">{{ number_format($product->price, 0) }} đ</span>
                         <del>{{ number_format($product->cost, 0) }} đ</del>
                         <span class="btn btn-km">Giảm {{ number_format(($product->price) - ($product->cost)) }} đ</span>
                     </p>
-                    <p class="font-weight-bold" style="font-size: 13px">Hãy lựa chọn theo sở thích cá nhân và xem giá bán.</p>
-                    <!-- <div class="control-option">
-                        <p>
-                            <label class="opt_attr active">
-                                <input type="radio" id="male" checked name="gender" value="male">
-                                <span class="name"><i class="tick"></i>Graphite</span>
-                                <span class="price">26.790.000&nbsp;₫</span>
-                            </label>
-                            <label class="opt_attr">
-                                <input type="radio" id="female" name="gender" value="female">
-                                <span class="name"><i class="tick"></i>Graphite</span>
-                                <span class="price">26.790.000&nbsp;₫</span>
-                            </label>
-                            <label class="opt_attr">
-                                <input type="radio" id="other" name="gender" value="other">
-                                <span class="name"><i class="tick"></i>Graphite</span>
-                                <span class="price">26.790.000&nbsp;₫</span>
-                            </label>
-                        </p>
-                    </div> -->
-                    <p>Tình trạng: Còn hàng</p>
+                    <div class="">
+                        <p class="font-weight-bold" style="font-size: 13px">Hãy lựa chọn theo sở thích cá nhân và xem giá bán.</p>
+                    </div>
+                    <!-- aaaa -->
+                    <div class="product-options-wrapper" id="product-options-wrapper" data-hasrequired="* Required Fields">
+    <div class="fieldset" tabindex="0">
+        
+            
+
+        
+       
+        <div class="field configurable required">
+            <div class="  control-option">
+                                    <label data-id="10827" data-sku="26150670" onclick="showImage(this);newloadNhanhProduct(this,26150670,10704);" ;="" data-title="Graphite" class="opt_attr active" data-price="26.790.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="13" for="opt_attr_211">
+                        <input id="opt_attr_211" type="radio" value="211" name="super_attribute[93]">
+                            <span class="name"><i class="tick"></i>Graphite</span>
+                            <span class="price">26.790.000&nbsp;₫</span>
+                           
+                       <!-- <i class="fa fa-check"></i>-->
+                    </label>
+                   
+                                     <label data-id="10826" data-sku="26150669" onclick="showImage(this);newloadNhanhProduct(this,26150669,10704);" ;="" data-title="Silver" class="opt_attr" data-price="26.990.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_210">
+                        <input id="opt_attr_210" type="radio" value="210" name="super_attribute[93]">
+                            <span class="name"><i class="tick"></i>Silver</span>
+                            <span class="price">26.990.000&nbsp;₫</span>
+                           
+                       <!-- <i class="fa fa-check"></i>-->
+                    </label>
+                   
+                                     <label data-id="10828" data-sku="26150667" onclick="showImage(this);newloadNhanhProduct(this,26150667,10704);" ;="" data-title="Pacific Blue" class="opt_attr" data-price="26.990.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_212">
+                        <input id="opt_attr_212" type="radio" value="212" name="super_attribute[93]">
+                            <span class="name"><i class="tick"></i>Pacific Blue</span>
+                            <span class="price">26.990.000&nbsp;₫</span>
+                           
+                       <!-- <i class="fa fa-check"></i>-->
+                    </label>
+                   
+                                     <label data-id="10829" data-sku="26150668" onclick="showImage(this);newloadNhanhProduct(this,26150668,10704);" ;="" data-title="Gold" class="opt_attr" data-price="27.190.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_213">
+                        <input id="opt_attr_213" type="radio" value="213" name="super_attribute[93]">
+                            <span class="name"><i class="tick"></i>Gold</span>
+                            <span class="price">27.190.000&nbsp;₫</span>
+                           
+                       <!-- <i class="fa fa-check"></i>-->
+                    </label>
+                   
+                    
+               <!-- <select name="super_attribute[93]"
+                        data-selector="super_attribute[93]"
+                        data-validate="{required:true}"
+                        id="attribute93"
+                        class="super-attribute-select">
+                    <option value="">Choose an Option...</option>
+                </select>-->
+            </div>
+        </div>
+    
+    
+   <script>
+        var clickCount=0;
+        var list_images= {"attributes":{"93":{"id":"93","code":"color","label":"M\u00e0u","options":[{"id":"210","label":"Silver","products":["10826"],"product_id":"10826","price":"26990000.0000","market_price":"30990000.0000","discount":12,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-trang_1_1.jpg","id_nhanh":"26150669","sku":"26150669"},{"id":"211","label":"Graphite","products":["10827"],"product_id":"10827","price":"26790000.0000","market_price":"30990000.0000","discount":13,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-den_1_1.jpg","id_nhanh":"26150670","sku":"26150670"},{"id":"212","label":"Pacific Blue","products":["10828"],"product_id":"10828","price":"26990000.0000","market_price":"30990000.0000","discount":12,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-xanh_2_1.jpg","id_nhanh":"26150667","sku":"26150667"},{"id":"213","label":"Gold","products":["10829"],"product_id":"10829","price":"27190000.0000","market_price":"30990000.0000","discount":12,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-vang_3.jpg","id_nhanh":"26150668","sku":"26150668"}],"position":"0"}},"template":"<%- data.price %>\u00a0\u20ab","currencyFormat":"%s\u00a0\u20ab","optionPrices":{"10826":{"oldPrice":{"amount":26990000},"basePrice":{"amount":26990000},"finalPrice":{"amount":26990000},"tierPrices":[]},"10827":{"oldPrice":{"amount":26790000},"basePrice":{"amount":26790000},"finalPrice":{"amount":26790000},"tierPrices":[]},"10828":{"oldPrice":{"amount":26990000},"basePrice":{"amount":26990000},"finalPrice":{"amount":26990000},"tierPrices":[]},"10829":{"oldPrice":{"amount":27190000},"basePrice":{"amount":27190000},"finalPrice":{"amount":27190000},"tierPrices":[]}},"priceFormat":{"pattern":"%s\u00a0\u20ab","precision":0,"requiredPrecision":0,"decimalSymbol":",","groupSymbol":".","groupLength":3,"integerRequired":-4},"prices":{"oldPrice":{"amount":26790000},"basePrice":{"amount":26790000},"finalPrice":{"amount":26790000}},"productId":"10704","chooseText":"Choose an Option...","images":{"10826":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-trang_1_1.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-trang_1_1.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-trang_1_1.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}],"10827":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-den_1_1.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-den_1_1.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-den_1_1.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}],"10828":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-xanh_2_1.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-xanh_2_1.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-xanh_2_1.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}],"10829":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-vang_3.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-vang_3.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-vang_3.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}]},"index":{"10826":{"93":"210"},"10827":{"93":"211"},"10828":{"93":"212"},"10829":{"93":"213"}},"skus":[]};
+        function showImage(obj)
+        {
+            if(!clickCount){clickCount++;return ;}
+             var imageObj =  (list_images);
+             var iThumb=[];
+             let img;
+            objId=jQuery(obj).data('id');
+           
+            for(xin in imageObj['images'][objId])
+            {
+                iThumb.push(imageObj['images'][objId][xin]['img']);
+            } 
+
+            if(iThumb.length)
+            {
+                for(x in iThumb)
+                {
+                    
+
+                   jQuery(".nav-gallery-right img").attr("src",iThumb.pop());
+                    break;
+                }
+            }
+            
+
+
+        }
+    </script> 
+ 
+<style type="text/css">
+
+ 
+  @media screen and (min-width: 1024px)
+  {
+    .page-product-configurable .product-options-wrapper label.label_supper_attr{display: none !important; }
+  }
+</style>
+<script>
+require([
+    "jquery",
+    "jquery/ui"
+], function($){
+
+//<![CDATA[
+    $.extend(true, $, {
+        calendarConfig: {
+            dayNames: ["Ch\u1ee7 Nh\u1eadt","Th\u1ee9 Hai","Th\u1ee9 Ba","Th\u1ee9 T\u01b0","Th\u1ee9 N\u0103m","Th\u1ee9 S\u00e1u","Th\u1ee9 B\u1ea3y"],
+            dayNamesMin: ["CN","Th 2","Th 3","Th 4","Th 5","Th 6","Th 7"],
+            monthNames: ["th\u00e1ng 1","th\u00e1ng 2","th\u00e1ng 3","th\u00e1ng 4","th\u00e1ng 5","th\u00e1ng 6","th\u00e1ng 7","th\u00e1ng 8","th\u00e1ng 9","th\u00e1ng 10","th\u00e1ng 11","th\u00e1ng 12"],
+            monthNamesShort: ["thg 1","thg 2","thg 3","thg 4","thg 5","thg 6","thg 7","thg 8","thg 9","thg 10","thg 11","thg 12"],
+            infoTitle: "About the calendar",
+            firstDay: 0,
+            closeText: "Close",
+            currentText: "Go Today",
+            prevText: "Previous",
+            nextText: "Next",
+            weekHeader: "WK",
+            timeText: "Time",
+            hourText: "Hour",
+            minuteText: "Minute",
+            dateFormat: $.datepicker.RFC_2822,
+            showOn: "button",
+            showAnim: "",
+            changeMonth: true,
+            changeYear: true,
+            buttonImageOnly: null,
+            buttonImage: null,
+            showButtonPanel: true,
+            showWeek: true,
+            timeFormat: '',
+            showTime: false,
+            showHour: false,
+            showMinute: false
+        }
+    });
+
+    enUS = {"m":{"wide":["January","February","March","April","May","June","July","August","September","October","November","December"],"abbr":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}}; // en_US locale reference
+//]]>
+
+});
+</script>
+
+    </div>
+</div>
+                    <!-- aa -->
+                    <!-- <p>Tình trạng: Còn hàng</p>
                     <div class="mb-10">
                         <button class="btn-default-solid">Chọn mua</button>
                         <div class="wrap-group-number">
@@ -56,7 +207,43 @@
                             <input id="qty" type="text" disabled="" value="1">
                         </div>
                     </div>
-                    <p> Nhà sản xuất: {{ $product->manufacturer }}</p>
+                    <p> Nhà sản xuất: {{ $product->manufacturer }}</p> -->
+                </div>
+                <div class="col-lg-3 col-sm-3 col-xs-12" style="border: 1px solid #eeeeee;border-radius: 5px; padding: 10px">
+                    <div class="row">
+                        <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-gift"></i></div>
+                        <div class="col-md-10">
+                            <span style="font-size: 13px">Bộ sản phẩm: Thân máy, Hộp, Cáp, Cây lấy sim, Sách hướng dẫn 
+                                (Tất cả lô máy từ tháng 10/2020, Apple cắt bỏ tai nghe, củ sạc khỏi bộ sản phẩm bán kèm)
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-shield"></i></div>
+                        <div class="col-md-10">
+                            <span style="font-size: 13px">
+                                Giá đã bao gồm 10% VAT. Bảo hành 12 tháng Toàn cầu. Bảo hành 1 đổi 1 theo chính sách của Apple Việt Nam (Xem chi tiết)
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-usd"></i></div>
+                        <div class="col-md-10">
+                            <span style="font-size: 13px">
+                                Trả góp 0% qua thẻ tín dụng (Không trả trước, trả hàng tháng chỉ 4.465.000 ₫) hoặc qua 
+                                Paylater
+                            <div style="font-size: 13px">
+                                <p style="background-color: rgba(193, 39, 45, 0.3); padding: 5px; border-radius: 6px">
+                                Trả trước <strong style="color: #c2292e"> 8.037.000 ₫</strong>, trả hàng tháng chỉ <strong style="color: #c2292e">6.251.000 ₫</strong></p>
+                            </div>
+                                Hoặc Trả góp có lãi suất với trả trước <strong style="color: #c2292e">2.679.000 ₫</strong>, trả hàng tháng 
+                                <strong style="color: #c2292e">4.054.667 ₫</strong> qua nhà tài chính <strong>Home Credit, FE Credit, HD Saison</strong>  (chỉ cần CMND + GPLX)
+                                Hoặc trả góp - trả trước 0đ qua nhà tài chính FE Credit (Thủ tục chỉ cần CMND + Hộ khẩu )
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

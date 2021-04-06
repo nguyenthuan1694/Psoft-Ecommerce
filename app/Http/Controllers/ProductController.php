@@ -14,9 +14,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use App\Models\Category;
+use App\Repositories\Product\ProductRepository;
+use App\Repositories\Category\CategoryRepository;
 
 class ProductController extends Controller
 {
+    /**
+     * @var CommentRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $productRepository;
+
+    /**
+     * @var CategoryRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $categoryRepository;
+
+    public function __construct(
+        ProductRepository $productRepository,
+        CategoryRepository $categoryRepository
+    )
+    {
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+    }
+
     /**
      * Display a listing of products.
      *
@@ -24,7 +45,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(config('common.pagination.backend'));
+        $products = $this->productRepository->getProductWidthPagination();
         return view('backend.product.index')->with('products', $products);
     }
 
@@ -35,7 +56,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->getAll();
         $allStatus = config('common.product.status');
         $typeProduct = config('common.product.type');
         return view('backend.product.create')
@@ -53,7 +74,7 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        $product = Product::create($request->except(['categories', 'thumbnail', 'images']));
+        $product = $this->productRepository->create($request->except(['categories', 'thumbnail', 'images']));
         // Sync Categories
         $categories = $request->get('categories') ?? [];
         $product->categories()->sync($categories);
@@ -106,7 +127,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->getAll();
         $allStatus = config('common.product.status');
 
         return view('backend.product.edit')
@@ -125,8 +146,7 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, Product $product)
     {
-        $product->update($request->except(['categories', 'thumbnail']));
-
+        $this->productRepository->update($request->id, $request->except(['categories', 'thumbnail']));
         // Sync Categories
         $categories = $request->get('categories') ?? [];
         $product->categories()->sync($categories);

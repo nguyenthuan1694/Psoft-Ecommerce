@@ -3,6 +3,7 @@ namespace App\Repositories\Product;
 
 interface ProductRepositoryInterface
 {
-    //ví dụ: lấy 5 sản phầm đầu tiên
-    public function getProduct();
+    public function getProductWidthPagination();
+    public function getProductBySlug($slug);
+    public function getProductOtherSlug($slug);
 }

@@ -2,17 +2,28 @@
 namespace App\Repositories\Product;
 
 use App\Repositories\BaseRepository;
+use App\Models\Product;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
     //lấy model tương ứng
     public function getModel()
     {
-        return \App\Models\Category::class;
+        return Product::class;
     }
 
-    public function getProduct()
+    public function getProductWidthPagination()
     {
-        return $this->model->select('name')->take(1)->get();
+        return $this->model->paginate(config('common.pagination.backend'));
+    }
+
+    public function getProductBySlug($slug)
+    {
+        return $this->model->where('slug', '=', $slug)->first();
+    }
+
+    public function getProductOtherSlug($slug)
+    {
+        return $this->model->where('slug', '<>', $slug)->get();
     }
 }

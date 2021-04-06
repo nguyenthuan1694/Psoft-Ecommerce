@@ -18,7 +18,7 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    protected $with = ['children'];
+    protected $with = ['children', 'products'];
 
     protected $dates = ['created_at', 'updated_at'];
 }

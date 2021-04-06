@@ -8,9 +8,21 @@ use App\Http\Requests\CategoryUpdateRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Repositories\Category\CategoryRepository;
 
 class CategoryController extends Controller
 {
+
+     /**
+     * @var CategoryRepositoryInterface|\App\Repositories\Repository
+     */
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     /**
      * Display a listing of categories.
      *
@@ -18,7 +30,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->getAll();
         return view('backend.category.index')->with('categories', $categories);
     }
 
@@ -29,8 +41,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $allCategory = Category::root()->get();
-
+        $allCategory = $this->categoryRepository->getAll();
         return view('backend.category.create')->with('allCategory', $allCategory);
     }
 
@@ -42,8 +53,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        Category::create($request->all());
-
+        $this->categoryRepository->create($request->all());
         return redirect()->route('categories.index')->with('success', 'You have successfully created a new category');
     }
 
@@ -65,8 +75,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $allCategory = Category::root()->get();
-
+        $allCategory = $this->categoryRepository->getAll();
         return view('backend.category.edit')
             ->with('category', $category)
             ->with('allCategory', $allCategory);
@@ -81,8 +90,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, Category $category)
     {
-        $category->update($request->all());
-
+        $this->categoryRepository->update($request->id, $request->all());
         return redirect()->route('categories.index')->with('success', 'You have successfully updated the category');
     }
 

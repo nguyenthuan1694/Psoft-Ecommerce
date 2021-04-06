@@ -9,9 +9,37 @@ use App\Http\Requests\CommentStoreRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use App\Repositories\Comment\CommentRepository;
+use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Product\ProductRepository;
 
 class HomeController extends Controller
 {
+    /**
+     * @var CategoryRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $categoryRepository;
+    /**
+     * @var CommentRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $commentRepository;
+    /**
+     * @var ProductRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $productRepository;
+
+    public function __construct(
+        CategoryRepository $categoryRepository,
+        CommentRepository $commentRepository,
+        ProductRepository $productRepository
+    )
+    {
+        $this->categoryRepository = $categoryRepository;
+        $this->commentRepository = $commentRepository;
+        $this->productRepository = $productRepository;
+    }
+
+
     /**
      * Show the application dashboard.
      *
@@ -19,10 +47,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::with(['products'])->root()->get();
+        $categories = $this->categoryRepository->getAll();
         return view('frontend.home')
-                ->with('categories', $categories)
-            ;
+            ->with('categories', $categories)
+        ;
     }
 
     /**
@@ -34,8 +62,9 @@ class HomeController extends Controller
      */
     public function showCategory(Request $request, $slug)
     {
-        $category = Category::with('parent')->where('slug', '=', $slug)->first();
-        $products = $category->products()->paginate(config('common.pagination.frontend'));
+        $resultData = $this->categoryRepository->getCategory($slug);
+        $category = $resultData[0];
+        $products = $resultData[1];
         return view('frontend.category')
             ->with('category', $category)
             ->with('products', $products)
@@ -51,10 +80,9 @@ class HomeController extends Controller
      */
     public function showProduct(Request $request, $slug)
     {
-        $product = Product::where('slug', '=', $slug)->first();
-        $products = Product::where('slug', '<>', $slug)->orderBy('created_at','DESC')->get();
-        $comments = Comment::with('subComments')->where('product_id',$product->id)
-                            ->where('status', '<>', 0)->get();
+        $product = $this->productRepository->getProductBySlug($slug);
+        $products = $this->productRepository->getProductOtherSlug($slug);
+        $comments = $this->commentRepository->getCommentWithProductSubcomment($product->id);
         $commentsTotal = $comments->count();
         return view('frontend.product')
                 ->with('product', $product)
@@ -93,7 +121,7 @@ class HomeController extends Controller
      */
     public function store(CommentStoreRequest $request)
     {
-        Comment::create($request->all());
+        $this->CommentRepository->create($request->all());
         return redirect()->route('product', [$request->slug])->with('success', 'You have successfully created a new product');
     }
 }

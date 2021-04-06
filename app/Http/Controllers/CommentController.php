@@ -83,8 +83,8 @@ class CommentController extends Controller
         if($request->cmt_update) {
             $comment->update($request->all());
         } else {
-            Comment::create($request->all());
-            Comment::where('id', $comment->id)->update(['status' => 1]);
+            $this->commentRepository->create($request->all());
+            $this->commentRepository->update($comment->id, ['status' => 1]);
         }
         
         return redirect()->route('comments.index')->with('success', 'You have successfully updated the category');

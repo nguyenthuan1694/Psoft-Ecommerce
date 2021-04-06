@@ -6,14 +6,13 @@ use App\Models\Comment;
 
 class CommentRepository extends BaseRepository implements CommentRepositoryInterface
 {
-    //lấy model tương ứng
     public function getModel()
     {
         return Comment::class;
     }
 
-    public function getCommentWithProductSubcomment()
+    public function getCommentWithProductSubcomment($productId)
     {
-        return $this->model->select('name')->take(1)->get();
+        return $this->model->with('subComments')->where('product_id',$productId)->where('status', '<>', 0)->get();
     }
 }
