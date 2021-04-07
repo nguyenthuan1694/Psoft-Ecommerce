@@ -1,5 +1,5 @@
 .header-menu {
-    height: 68px;
+    height: 65px;
 }
 .header-menu.fixed {
 	padding-top: 63px;
@@ -141,7 +141,7 @@
     z-index: 999;
 }
 .main-menu {
-    box-shadow: 1px 1px 1px #cccc;
+    /* box-shadow: 1px 1px 1px #cccc; */
 }
 .sub-ul-menu-child {
     top: 0;

@@ -4,18 +4,18 @@
     <a href="{{ route('cart.index') }}">Giỏ hàng</a>
     <div class="wrap-item-view-cart">
         <div id="cart_content">
-            <!-- @ foreach($cart::content() as $product) -->
+            @foreach($cart::content() as $product)
                 <div class="item-view-cart">
                     <div class="w-item-mini">
                         <img src="#" alt="">
                     </div>
                     <div class="content-text-item">
-                        <a href="#">abc</a>
-                        <p>1 x 1000000 VNĐ</p>
+                        <a href="#">{{ $product->name }}</a>
+                        <p>{{ $product->qty }} x {{ number_format($product->price, 0) }} đ</p>
                     </div>
-                    <span class="remove-item" onclick="removeFromCart()"><i class="ti-close"></i></span>
+                    <span class="remove-item" onclick="removeFromCart('{{ $product->rowId }}')"><i class="ti-close"></i></span>
                 </div>
-            <!-- @ endforeach -->
+            @endforeach
         </div>
 
         <div class="wrap-total-fee">

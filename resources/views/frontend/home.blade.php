@@ -2,7 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('frontend/css/home.css') }}">
-    <section style="padding-top: 49px">
+    <section style="padding-top: 47px">
         <div class="section--default">
             <div class="gallery gallery-responsive portfolio_slider">
                 <div class="inner"><img src="{{ asset('frontend/images/banner-1.webp') }}"></div>
@@ -14,61 +14,63 @@
     <section>
         @foreach($categories as $category)
             @if(!empty($category->products))
-            <div class="container section--default mt-5">
-                <div class="wrap_title mb__30 des_title_2">
-                    <h3 class="sections-title tc pr flex fl_center al_center fs__24 title_2">
-                        <span class="mr__10 ml__10 text-uppercase">{{ $category->name }}</span>
-                    </h3>
-                    <span class="dn tt_divider">
-                        <span></span>
-                        <i class="dn clprfalse title_2 la-gem"></i>
-                        <span> </span>
-                    </span>
-                    <div class="text-center"><span class="section-subtitle db sub-title tc">{{ $category->description }}</span></div>
-                </div>
-                <!-- product -->
-                <div class="row">
-                    @foreach($category->products->take(8) as $product)
-                        <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
-                            <div class="home--product">
-                                <a  href="{{ route('product', ['slug' => $product->slug]) }}">
-                                    <div class="home--product__img">
-                                        <img src="{{ asset($product->thumbnail) }}" alt="Img" class="img-responsive" />
-                                        @if($product->cost)
-                                            <span class="btn btn-km">{{ number_format(($product->price) - ($product->cost)) }}đ</span>
-                                        @endif
-                                    </div>
-                                </a>
-                                <div class="home--product__text">
-                                    <div class="home--product__title">
-                                        <span><a class="home--product__name" href="#">{{ $product->name }}</a></span>
-                                    </div>
-                                    <div class="home--product__description">
-                                        <p class="home--product__location">
-                                            <strong>Giá:</strong>
-                                            <span class="mr-2">{{ number_format($product->price) }}đ</span>
+                @if(empty($category->parent_id))
+                <div class="container section--default mt-5">
+                    <div class="wrap_title mb__30 des_title_2">
+                        <h3 class="sections-title tc pr flex fl_center al_center fs__24 title_2">
+                            <span class="mr__10 ml__10 text-uppercase">{{ $category->name }}</span>
+                        </h3>
+                        <span class="dn tt_divider">
+                            <span></span>
+                            <i class="dn clprfalse title_2 la-gem"></i>
+                            <span> </span>
+                        </span>
+                        <div class="text-center"><span class="section-subtitle db sub-title tc">{{ $category->description }}</span></div>
+                    </div>
+                    <!-- product -->
+                    <div class="row">
+                        @foreach($category->products->take(8) as $product)
+                            <div class="abc col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-4">
+                                <div class="home--product">
+                                    <a  href="{{ route('product', ['slug' => $product->slug]) }}">
+                                        <div class="home--product__img">
+                                            <img src="{{ asset($product->thumbnail) }}" alt="Img" class="img-responsive" />
                                             @if($product->cost)
-                                                <del>{{ number_format($product->cost) }}đ</del>
+                                                <span class="btn btn-km">{{ number_format(($product->price) - ($product->cost)) }}đ</span>
                                             @endif
-                                        </p>
-                                        <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
-                                        <small class="btn btn-bh">Bảo hành 12 tháng</small>
-                                        <p class="mt-1"></p>
-                                        <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                                        </div>
+                                    </a>
+                                    <div class="home--product__text">
+                                        <div class="home--product__title">
+                                            <span><a class="home--product__name" href="#">{{ $product->name }}</a></span>
+                                        </div>
+                                        <div class="home--product__description">
+                                            <p class="home--product__location">
+                                                <strong>Giá:</strong>
+                                                <span class="mr-2">{{ number_format($product->price) }}đ</span>
+                                                @if($product->cost)
+                                                    <del>{{ number_format($product->cost) }}đ</del>
+                                                @endif
+                                            </p>
+                                            <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
+                                            <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                            <p class="mt-1"></p>
+                                            <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        @endforeach
+                    </div>
+                    <div class="mt-3">
+                        <div class="home--product__view">
+                            <a href="{{ route('category', ['slug' => $category->slug]) }}" class="float-right btn btn-custom btn-sm color--link mb-1">
+                                Xem tất cả
+                            </a>   
                         </div>
-                    @endforeach
-                </div>
-                <div class="mt-3">
-                    <div class="home--product__view">
-                        <a href="{{ route('category', ['slug' => $category->slug]) }}" class="float-right btn btn-custom btn-sm color--link mb-1">
-                            Xem tất cả
-                        </a>   
                     </div>
                 </div>
-            </div>
+                @endif
             @endif
         @endforeach
     </section>

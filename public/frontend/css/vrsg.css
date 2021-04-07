@@ -628,7 +628,7 @@ h3 {
     width: 120px;
     height: 35px;
     line-height: 35px;
-    border-color: #fa8231;
+    /* border-color: #fa8231; */
 }
 
 footer {
@@ -927,13 +927,7 @@ footer {
 .wrap-image-pro {
 	width: 80%;
 }
-.wrap-price-detail {
-	font-size: 20px;
-}
-.wrap-price-detail del {
-	font-size: 16px;
-	color: #bcbcbc;
-}
+
 .slick-arrow {
     background: #fa8231;
     width: 30px;

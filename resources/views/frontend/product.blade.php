@@ -46,168 +46,100 @@
                             <img src="{{ asset($images->url) }}" alt="">
                         @endforeach
                     </div>
+                    <div class="mt-4" style="font-size: 13.5px; line-height: 1.5;text-align: justify">
+                        {!! $product->short_description !!}
+                    </div>
                 </div>
                 <div class="col-lg-5 col-sm-5 col-xs-12">
-                    <p class="wrap-price-detail">
-                        <span class="price">{{ number_format($product->price, 0) }} đ</span>
-                        <del>{{ number_format($product->cost, 0) }} đ</del>
+                    <div class="wrap-price-detail">
+                        <span class="price mr-2">{{ number_format($product->price, 0) }} đ</span>
+                        <del class="mr-2">{{ number_format($product->cost, 0) }} đ</del>
                         <span class="btn btn-km">Giảm {{ number_format(($product->price) - ($product->cost)) }} đ</span>
-                    </p>
-                    <div class="">
-                        <p class="font-weight-bold" style="font-size: 13px">Hãy lựa chọn theo sở thích cá nhân và xem giá bán.</p>
                     </div>
-                    <!-- aaaa -->
-                    <div class="product-options-wrapper" id="product-options-wrapper" data-hasrequired="* Required Fields">
-    <div class="fieldset" tabindex="0">
-        
-            
+                    <div>
+                        <div style="margin: 0 0 15px">
+                            <span class="font-weight-bold" style="font-size: 13px">Hãy lựa chọn theo sở thích cá nhân và xem giá bán.</span>
+                        </div>
+                        <!-- aaaa -->
+                        <div class="product-options-wrapper">
+                            <div class="field configurable required">
+                                <div class="control-option">
+                                    <label data-id="10827" data-sku="26150670" data-title="Graphite" class="opt_attr active" data-price="26.790.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="13" for="opt_attr_211">
+                                        <input id="opt_attr_211" type="radio" value="211" name="super_attribute[93]">
+                                        <span class="name"><i class="tick"></i>Graphite</span>
+                                        <span class="price">26.790.000&nbsp;₫</span>
+                                    </label>
+                                    <label data-id="10826" data-sku="26150669" data-title="Silver" class="opt_attr" data-price="26.990.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_210">
+                                        <input id="opt_attr_210" type="radio" value="210" name="super_attribute[93]">
+                                        <span class="name"><i class="tick"></i>Silver</span>
+                                        <span class="price">26.990.000&nbsp;₫</span>
+                                    </label>
+                                    <label data-id="10828" data-sku="26150667" data-title="Pacific Blue" class="opt_attr" data-price="26.990.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_212">
+                                        <input id="opt_attr_212" type="radio" value="212" name="super_attribute[93]">
+                                        <span class="name"><i class="tick"></i>Pacific Blue</span>
+                                        <span class="price">26.990.000&nbsp;₫</span>
+                                    </label>
+                                    <label data-id="10829" data-sku="26150668" data-title="Gold" class="opt_attr" data-price="27.190.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_213">
+                                        <input id="opt_attr_213" type="radio" value="213" name="super_attribute[93]">
+                                        <span class="name"><i class="tick"></i>Gold</span>
+                                        <span class="price">27.190.000&nbsp;₫</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-        
-       
-        <div class="field configurable required">
-            <div class="  control-option">
-                                    <label data-id="10827" data-sku="26150670" onclick="showImage(this);newloadNhanhProduct(this,26150670,10704);" ;="" data-title="Graphite" class="opt_attr active" data-price="26.790.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="13" for="opt_attr_211">
-                        <input id="opt_attr_211" type="radio" value="211" name="super_attribute[93]">
-                            <span class="name"><i class="tick"></i>Graphite</span>
-                            <span class="price">26.790.000&nbsp;₫</span>
-                           
-                       <!-- <i class="fa fa-check"></i>-->
-                    </label>
-                   
-                                     <label data-id="10826" data-sku="26150669" onclick="showImage(this);newloadNhanhProduct(this,26150669,10704);" ;="" data-title="Silver" class="opt_attr" data-price="26.990.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_210">
-                        <input id="opt_attr_210" type="radio" value="210" name="super_attribute[93]">
-                            <span class="name"><i class="tick"></i>Silver</span>
-                            <span class="price">26.990.000&nbsp;₫</span>
-                           
-                       <!-- <i class="fa fa-check"></i>-->
-                    </label>
-                   
-                                     <label data-id="10828" data-sku="26150667" onclick="showImage(this);newloadNhanhProduct(this,26150667,10704);" ;="" data-title="Pacific Blue" class="opt_attr" data-price="26.990.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_212">
-                        <input id="opt_attr_212" type="radio" value="212" name="super_attribute[93]">
-                            <span class="name"><i class="tick"></i>Pacific Blue</span>
-                            <span class="price">26.990.000&nbsp;₫</span>
-                           
-                       <!-- <i class="fa fa-check"></i>-->
-                    </label>
-                   
-                                     <label data-id="10829" data-sku="26150668" onclick="showImage(this);newloadNhanhProduct(this,26150668,10704);" ;="" data-title="Gold" class="opt_attr" data-price="27.190.000&nbsp;₫" data-marketprice="30.990.000&nbsp;₫" data-discount="12" for="opt_attr_213">
-                        <input id="opt_attr_213" type="radio" value="213" name="super_attribute[93]">
-                            <span class="name"><i class="tick"></i>Gold</span>
-                            <span class="price">27.190.000&nbsp;₫</span>
-                           
-                       <!-- <i class="fa fa-check"></i>-->
-                    </label>
-                   
-                    
-               <!-- <select name="super_attribute[93]"
-                        data-selector="super_attribute[93]"
-                        data-validate="{required:true}"
-                        id="attribute93"
-                        class="super-attribute-select">
-                    <option value="">Choose an Option...</option>
-                </select>-->
-            </div>
-        </div>
-    
-    
-   <script>
-        var clickCount=0;
-        var list_images= {"attributes":{"93":{"id":"93","code":"color","label":"M\u00e0u","options":[{"id":"210","label":"Silver","products":["10826"],"product_id":"10826","price":"26990000.0000","market_price":"30990000.0000","discount":12,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-trang_1_1.jpg","id_nhanh":"26150669","sku":"26150669"},{"id":"211","label":"Graphite","products":["10827"],"product_id":"10827","price":"26790000.0000","market_price":"30990000.0000","discount":13,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-den_1_1.jpg","id_nhanh":"26150670","sku":"26150670"},{"id":"212","label":"Pacific Blue","products":["10828"],"product_id":"10828","price":"26990000.0000","market_price":"30990000.0000","discount":12,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-xanh_2_1.jpg","id_nhanh":"26150667","sku":"26150667"},{"id":"213","label":"Gold","products":["10829"],"product_id":"10829","price":"27190000.0000","market_price":"30990000.0000","discount":12,"thumbnail":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/i\/p\/iphone-12-pro-vang_3.jpg","id_nhanh":"26150668","sku":"26150668"}],"position":"0"}},"template":"<%- data.price %>\u00a0\u20ab","currencyFormat":"%s\u00a0\u20ab","optionPrices":{"10826":{"oldPrice":{"amount":26990000},"basePrice":{"amount":26990000},"finalPrice":{"amount":26990000},"tierPrices":[]},"10827":{"oldPrice":{"amount":26790000},"basePrice":{"amount":26790000},"finalPrice":{"amount":26790000},"tierPrices":[]},"10828":{"oldPrice":{"amount":26990000},"basePrice":{"amount":26990000},"finalPrice":{"amount":26990000},"tierPrices":[]},"10829":{"oldPrice":{"amount":27190000},"basePrice":{"amount":27190000},"finalPrice":{"amount":27190000},"tierPrices":[]}},"priceFormat":{"pattern":"%s\u00a0\u20ab","precision":0,"requiredPrecision":0,"decimalSymbol":",","groupSymbol":".","groupLength":3,"integerRequired":-4},"prices":{"oldPrice":{"amount":26790000},"basePrice":{"amount":26790000},"finalPrice":{"amount":26790000}},"productId":"10704","chooseText":"Choose an Option...","images":{"10826":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-trang_1_1.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-trang_1_1.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-trang_1_1.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}],"10827":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-den_1_1.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-den_1_1.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-den_1_1.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}],"10828":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-xanh_2_1.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-xanh_2_1.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-xanh_2_1.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}],"10829":[{"thumb":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/f9c7fbe9b524c081a3ccf800cbd963eb\/i\/p\/iphone-12-pro-vang_3.jpg","img":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/c687aa7517cf01e65c009f6943c2b1e9\/i\/p\/iphone-12-pro-vang_3.jpg","full":"https:\/\/didongviet.vn\/pub\/media\/catalog\/product\/cache\/926507dc7f93631a094422215b778fe0\/i\/p\/iphone-12-pro-vang_3.jpg","caption":null,"position":"1","isMain":true,"type":"image","videoUrl":null}]},"index":{"10826":{"93":"210"},"10827":{"93":"211"},"10828":{"93":"212"},"10829":{"93":"213"}},"skus":[]};
-        function showImage(obj)
-        {
-            if(!clickCount){clickCount++;return ;}
-             var imageObj =  (list_images);
-             var iThumb=[];
-             let img;
-            objId=jQuery(obj).data('id');
-           
-            for(xin in imageObj['images'][objId])
-            {
-                iThumb.push(imageObj['images'][objId][xin]['img']);
-            } 
-
-            if(iThumb.length)
-            {
-                for(x in iThumb)
-                {
-                    
-
-                   jQuery(".nav-gallery-right img").attr("src",iThumb.pop());
-                    break;
-                }
-            }
-            
-
-
-        }
-    </script> 
- 
-<style type="text/css">
-
- 
-  @media screen and (min-width: 1024px)
-  {
-    .page-product-configurable .product-options-wrapper label.label_supper_attr{display: none !important; }
-  }
-</style>
-<script>
-require([
-    "jquery",
-    "jquery/ui"
-], function($){
-
-//<![CDATA[
-    $.extend(true, $, {
-        calendarConfig: {
-            dayNames: ["Ch\u1ee7 Nh\u1eadt","Th\u1ee9 Hai","Th\u1ee9 Ba","Th\u1ee9 T\u01b0","Th\u1ee9 N\u0103m","Th\u1ee9 S\u00e1u","Th\u1ee9 B\u1ea3y"],
-            dayNamesMin: ["CN","Th 2","Th 3","Th 4","Th 5","Th 6","Th 7"],
-            monthNames: ["th\u00e1ng 1","th\u00e1ng 2","th\u00e1ng 3","th\u00e1ng 4","th\u00e1ng 5","th\u00e1ng 6","th\u00e1ng 7","th\u00e1ng 8","th\u00e1ng 9","th\u00e1ng 10","th\u00e1ng 11","th\u00e1ng 12"],
-            monthNamesShort: ["thg 1","thg 2","thg 3","thg 4","thg 5","thg 6","thg 7","thg 8","thg 9","thg 10","thg 11","thg 12"],
-            infoTitle: "About the calendar",
-            firstDay: 0,
-            closeText: "Close",
-            currentText: "Go Today",
-            prevText: "Previous",
-            nextText: "Next",
-            weekHeader: "WK",
-            timeText: "Time",
-            hourText: "Hour",
-            minuteText: "Minute",
-            dateFormat: $.datepicker.RFC_2822,
-            showOn: "button",
-            showAnim: "",
-            changeMonth: true,
-            changeYear: true,
-            buttonImageOnly: null,
-            buttonImage: null,
-            showButtonPanel: true,
-            showWeek: true,
-            timeFormat: '',
-            showTime: false,
-            showHour: false,
-            showMinute: false
-        }
-    });
-
-    enUS = {"m":{"wide":["January","February","March","April","May","June","July","August","September","October","November","December"],"abbr":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}}; // en_US locale reference
-//]]>
-
-});
-</script>
-
-    </div>
-</div>
-                    <!-- aa -->
-                    <!-- <p>Tình trạng: Còn hàng</p>
-                    <div class="mb-10">
-                        <button class="btn-default-solid">Chọn mua</button>
-                        <div class="wrap-group-number">
-                            <button class="btn-plus"><i class="ti-plus"></i></button>
-                            <button class="btn-minus"><i class="ti-minus"></i></button>
-                            <input id="qty" type="text" disabled="" value="1">
+                        <div class="" style="border: 1px solid #eee; padding: 15px 15px 0; clear: both;border-radius: 5px;">
+                            <div style="margin-bottom: 15px; font-size:14px; color: #FFF">    
+                                <span class="text-uppercase" style="color: #FFF;background-color: #c1272d; border-radius: 10px; padding: 5px 15px;">
+                                    khuyến mãi, ưu đãi
+                                </span>
+                                <div class="mt-3">
+                                    <ul style="color: #333333">
+                                        <li> <i class="fa fa-hand-o-right"></i> Hỗ trợ kích hoạt eSIM miễn phí <a style="color: #0071bb; text-decoration: none;" href="#">(Xem chi tiết)</a></li>
+                                        <li> <i class="fa fa-hand-o-right"></i> Trade-in thu cũ lên đời tiết kiệm đến <strong style="color: #ff0000">19,8 triệu</strong> <a style="color: #0071bb; text-decoration: none;" href="#">(Xem chi tiết)</a></li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="mt-3">
+                                    <span style="margin: 0 0 15px; color: #c83837; font-size: 14px; font-weight: normal;">Có <strong>4 ưu đãi nổi bật</strong> mua kèm máy</span>
+                                    <ul class="mt-2" style="color: #333333">
+                                        <li class="mt-2"> <i class="fa fa-hand-o-right"></i> Mua <a style="color: #0071bb; text-decoration: none;" href="#"> đế sạc không dây Apple MagSafe</a> giá chỉ <strong style="color: #ff0000">1.490.000đ</strong> (giá gốc 1.650.000đ) </li>
+                                        <li class="mt-2"> <i class="fa fa-hand-o-right"></i> <a style="color: #0071bb; text-decoration: none;" href="#">Combo phụ kiện iPhone 12 Series thời trang</a> giá chỉ <strong style="color: #ff0000">890.000đ</strong> (giá gốc 1.240.000đ) </li>
+                                        <li class="mt-2"> <i class="fa fa-hand-o-right"></i> <a style="color: #0071bb; text-decoration: none;" href="#">Combo phụ kiện iPhone 12 Series thương hiệu</a> giá chỉ <strong style="color: #ff0000">1.050.000đ</strong> (giá gốc 1.470.000đ) </li>
+                                        <li class="mt-2"> <i class="fa fa-hand-o-right"></i> <a style="color: #0071bb; text-decoration: none;" href="#">Combo phụ kiện iPhone 12 Series chính hãng</a> giá chỉ <strong style="color: #ff0000">990.000đ</strong> (giá gốc 1.120.000đ)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3" style="background-color: #10b0a7; margin-bottom: 15px; color: #FFF; border-radius: 6px;padding: 7px;">
+                            <a style="color: #fff;text-decoration: none; font-size: 14px;" href="#" target="_blank">
+                                <i class="fa fa-angle-double-right"></i>
+                                Giảm thêm 1.5% giá trị hoá đơn dành cho thành viên PSoft
+                            </a>
+                        </div>
+                        <div class="box-tocart">
+                            <input type="hidden" name="qty" value="1">
+                            <div class="fieldset">
+                                <div class="actions">
+                                    <button onclick="return submitCheckout(this);" type="submit" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
+                                        <span>Mua ngay</span>
+                                        <small>Giao tận nơi cho quý khách hàng hoặc nhận hàng tại shop.</small> 
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p> Nhà sản xuất: {{ $product->manufacturer }}</p> -->
+
+                    <!-- aa -->
+
+                    <p>Tình trạng: Còn hàng</p>
+                    <button class="btn-default-solid" onclick="addToCart({{$product->id}}, {{$product->qty}})">Chọn mua</button>
+                    <div class="wrap-group-number">
+                        <button class="btn-plus"><i class="ti-plus"></i></button>
+                        <button class="btn-minus"><i class="ti-minus"></i></button>
+                        <input type="text" disabled value="0">
+                    </div>
+                    <p> Nhà sản xuất: {{ $product->manufacturer }}</p>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-12" style="border: 1px solid #eeeeee;border-radius: 5px; padding: 10px">
                     <div class="row">
@@ -232,22 +164,26 @@ require([
                         <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-usd"></i></div>
                         <div class="col-md-10">
                             <span style="font-size: 13px">
+                               <div>
                                 Trả góp 0% qua thẻ tín dụng (Không trả trước, trả hàng tháng chỉ 4.465.000 ₫) hoặc qua 
                                 Paylater
-                            <div style="font-size: 13px">
+                               </div>
+                            <div style="font-size: 13px" class="mt-2">
                                 <p style="background-color: rgba(193, 39, 45, 0.3); padding: 5px; border-radius: 6px">
                                 Trả trước <strong style="color: #c2292e"> 8.037.000 ₫</strong>, trả hàng tháng chỉ <strong style="color: #c2292e">6.251.000 ₫</strong></p>
                             </div>
+                            <div>
                                 Hoặc Trả góp có lãi suất với trả trước <strong style="color: #c2292e">2.679.000 ₫</strong>, trả hàng tháng 
                                 <strong style="color: #c2292e">4.054.667 ₫</strong> qua nhà tài chính <strong>Home Credit, FE Credit, HD Saison</strong>  (chỉ cần CMND + GPLX)
                                 Hoặc trả góp - trả trước 0đ qua nhà tài chính FE Credit (Thủ tục chỉ cần CMND + Hộ khẩu )
+                            </div>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container section--default short-description">
+        <!-- <div class="container section--default short-description">
             <div class="short-description__card">
                 <h5 class="text-uppercase">Giới thiệu</h5>
                 <hr>
@@ -258,15 +194,125 @@ require([
                 </div>
             </div>
            
-        </div>
+        </div> -->
+       
         <div class="container section--default long_description">
-            @if($product->long_description)
-                <div class="long-description__card">
-                    <h5 class="text-uppercase">Thông tin chung</h5>
-                    <hr>
-                    {!! $product->long_description !!}
+        <hr>
+            <div class="row">
+                <div class="col-md-8">
+                    @if($product->long_description)
+                    <div class="long-description__card">
+                        <h5 class="text-uppercase">Thông tin chung</h5>
+                        <hr>
+                        {!! $product->long_description !!}
+                    </div>
+                    @endif
                 </div>
-            @endif
+                <div class="col-md-4 ">
+                    <div class="text-center">
+                        <span class="font-weight-bold" style="font-size: 20px;margin: 0 0 15px; padding-bottom: 15px;">Cấu hình | Thông số</span>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Màn Hình</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Công nghệ màn hình: Super Retina XDR OLED</li>
+                                <li class="mt-2">Độ phân giải: 1170 x 2532 pixels</li>
+                                <li class="mt-2">Màn hình rộng: 6.1 inches</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Camera sau</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Độ phân giải: 12 MP + 12 MP + 12 MP + TOF</li>
+                                <li class="mt-2">Quay phim: 4K@24/30/60fps, 1080p@30/60/120/240fps, HDR, Dolby Vision HDR (up to 60fps)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Camera sau</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Độ phân giải: 12 MP + 12 MP + 12 MP + TOF</li>
+                                <li class="mt-2">Quay phim: 4K@24/30/60fps, 1080p@30/60/120/240fps, HDR, Dolby Vision HDR (up to 60fps)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Camera trước</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Độ phân giải: 12 MP</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Hệ điều hành - CPU</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Hệ điều hành: iOS 14</li>
+                                <li class="mt-2">Chipset (hãng SX CPU): Apple A14 Bionic (5 nm)</li>
+                                <li class="mt-2">Tốc độ CPU: Hexa-core</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Bộ nhớ - Lưu trữ</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Bộ nhớ trong: 128 GB</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Kết nối</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Mạng di động: Hỗ trợ 5G</li>
+                                <li class="mt-2">Wifi: Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, hotspot</li>
+                                <li class="mt-2">Bluetooth: 5.0, A2DP, LE</li>
+                                <li class="mt-2">Cổng kết nối/sạc: Lightning, USB 2.0</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">Thông tin pin - Sạc</span>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="font-size: 14px">
+                                <li class="mt-2">Thông tin pin - Sạc Dung lượng pin: 2815 mAh</li>
+                                <li class="mt-2">Loại pin: Li-Ion</li>
+                                <li class="mt-2">Công nghệ pin: Sạc nhanh 20W</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- cmt -->
         <div class="container section--default">
@@ -409,6 +455,46 @@ require([
 @section('script')
     <script src="{{ asset('backend/dist/js/validation-data.js') }}"></script>
     <script type="text/javascript">
+
+        $('.btn-plus').click(function () {
+            console.log('ss')
+            if ($('#qty').val() < 4 ) {
+                $('#qty').val(parseInt($('#qty').val()) + 1);
+            }
+        });
+
+        $('.btn-minus').click(function () {
+            if ($('#qty').val() > 0) {
+                $('#qty').val(parseInt($('#qty').val()) - 1);
+            }
+        });
+
+        var clickCount = 0;
+        function showImage(obj)
+        {
+            if(!clickCount){clickCount++;return ;}
+             var imageObj =  (list_images);
+             var iThumb=[];
+             let img;
+            objId=jQuery(obj).data('id');
+           
+            for(xin in imageObj['images'][objId])
+            {
+                iThumb.push(imageObj['images'][objId][xin]['img']);
+            } 
+
+            if(iThumb.length)
+            {
+                for(x in iThumb)
+                {
+                    
+
+                   jQuery(".nav-gallery-right img").attr("src",iThumb.pop());
+                    break;
+                }
+            }
+        }
+        // 
         function addCommentBox(id, phone) {
         // Check if comment box is already exist
         var targetDiv = document.getElementById('i-comment-' + id).getElementsByClassName("comment-temp")[0];

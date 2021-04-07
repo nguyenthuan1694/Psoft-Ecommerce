@@ -9,7 +9,7 @@ use App\Models\Courier;
 use App\Models\District;
 use App\Models\Order;
 use App\Models\OrderDetail;
-// use App\Models\Product;
+use App\Models\Product;
 use App\Models\Province;
 use App\Models\Ward;
 use Gloudemans\Shoppingcart\Facades\Cart;
