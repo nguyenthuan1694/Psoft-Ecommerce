@@ -24,8 +24,9 @@ class CartController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        $product = Product::where('id',$request->product_id)->first();
         $categories = Category::root()->get();
         $coupon = session()->get('coupon')['name'];
         $discount = number_format(session()->get('coupon')['discount'], 0) ?? 0;
@@ -37,7 +38,18 @@ class CartController extends Controller
                 'coupon' => $coupon,
                 'discount' => $discount,
                 'newSubtotal' => $newSubtotal,
+                'product' => $product,
             ]);
+    }
+
+
+    public function payment(Request $request)
+    {
+        return view('frontend.payment');
+        // $product = Product::where('id',$request->product_id)->first();
+        // return view('frontend.payment')
+        //         ->with('product', $product)
+        // ;
     }
 
     /**

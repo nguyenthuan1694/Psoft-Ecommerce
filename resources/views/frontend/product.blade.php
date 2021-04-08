@@ -118,13 +118,17 @@
                             </a>
                         </div>
                         <div class="box-tocart">
-                            <input type="hidden" name="qty" value="1">
+                            <input type="hidden" name="qty" value="1">  
                             <div class="fieldset">
                                 <div class="actions">
-                                    <button onclick="return submitCheckout(this);" type="submit" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
-                                        <span>Mua ngay</span>
-                                        <small>Giao tận nơi cho quý khách hàng hoặc nhận hàng tại shop.</small> 
-                                    </button>
+                                    <form action="{{ route('cart.index') }}" method="get" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        <input hidden class="form-control" type="text" id="product_id" name="product_id" value="{{ $product->id }}">
+                                        <button type="submit" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
+                                            <span>Mua ngay</span>
+                                            <small>Giao tận nơi cho quý khách hàng hoặc nhận hàng tại shop.</small> 
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -132,20 +136,21 @@
 
                     <!-- aa -->
 
-                    <p>Tình trạng: Còn hàng</p>
+                    <!-- <p>Tình trạng: Còn hàng</p>
                     <button class="btn-default-solid" onclick="addToCart({{$product->id}}, {{$product->qty}})">Chọn mua</button>
                     <div class="wrap-group-number">
                         <button class="btn-plus"><i class="ti-plus"></i></button>
                         <button class="btn-minus"><i class="ti-minus"></i></button>
                         <input type="text" disabled value="0">
                     </div>
-                    <p> Nhà sản xuất: {{ $product->manufacturer }}</p>
+                    <p> Nhà sản xuất: {{ $product->manufacturer }}</p> -->
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-12" style="border: 1px solid #eeeeee;border-radius: 5px; padding: 10px">
                     <div class="row">
                         <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-gift"></i></div>
                         <div class="col-md-10">
-                            <span style="font-size: 13px">Bộ sản phẩm: Thân máy, Hộp, Cáp, Cây lấy sim, Sách hướng dẫn 
+                            <span style="font-size: 13px">
+                                Bộ sản phẩm: Thân máy, Hộp, Cáp, Cây lấy sim, Sách hướng dẫn 
                                 (Tất cả lô máy từ tháng 10/2020, Apple cắt bỏ tai nghe, củ sạc khỏi bộ sản phẩm bán kèm)
                             </span>
                         </div>
@@ -207,6 +212,108 @@
                         {!! $product->long_description !!}
                     </div>
                     @endif
+                    <!-- comment -->
+                    <div class="w-100">
+                        <span class="cmt-title">{{ $commentsTotal }} Hỏi đáp &amp; tư vấn</span>
+                        <form class="needs-validation" novalidate action="{{ route('home.store') }}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="slug" value="{{ $product->slug }}">
+                            <div class="form-group tinymce-wrap mt-3">
+                                <textarea placeholder="Hãy đặt câu hỏi, chúng tôi sẽ tư vấn giúp bạn..." name="description" class="tinymce" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input style="font-size: 13px" required placeholder="Họ tên (bắt buộc)" id="name" name="name" type="text" class="form-control" value="{{ old('name') }}">
+                                    <div class="valid-feedback">Tên hợp lệ !</div>
+                                    <div class="invalid-feedback">Vui lòng nhập tên !</div>
+                            </div>
+                            <div class="form-group">
+                                <input style="font-size: 13px" required placeholder="Số điện thoại (bắt buộc)" id="phone" name="phone" type="text" class="form-control" value="{{ old('phone') }}">
+                                <div class="valid-feedback">Số điện thoại hợp lệ !</div>
+                                <div class="invalid-feedback">Vui lòng nhập Số điện thoại !</div>
+                            </div>
+                            <button class="btn btn-km" type="submit">Gửi phản hồi</button>
+                        </form>
+                    </div>
+                    @foreach($comments as $comment)
+                    @if(empty($comment->parent_id))
+                    <div class=" text0 mb-3" id="i-comment-{{$comment->id}}">
+                        <div class="input-group w-auto flex-nowrap  comment-box-style mt-4 pt-3 px-3 pb-1">
+                            <div class="input-group-prepend mr-2">
+                                <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
+                            </div>
+                            <div class="w-100">
+                                <div class="text-capitalize mb-1 font-weight-bold">
+                                    {{ $comment->name }}
+                                    <span class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i id="five" class="fa fa-star"></i>
+                                    </span>
+                                </div>
+                                <input type="hidden" name="cmt_name" value="{{ $comment->name }}">
+                                <input type="hidden" name="cmt_phone" value="{{ $comment->phone }}">
+                                <div class="comment-content font-light">
+                                    {!! $comment->description !!}
+                                </div>
+                                <div class="text08 mt-1">
+                                    <i><span class="color-gray">
+                                    Đã đăng {{Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}</span>
+                                    </i> 
+                                    <a class="ml-2 color-gray product-comment" onclick="addCommentBox({{ $comment->id }},{{ $comment->phone }})"><b style="color: #1979c3">Trả lời</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Show subcomments --}}
+                        @if(count($comment->subComments) > 0)
+                            @foreach($comment->subComments as $sub)
+                                @if($sub->admin == 1)
+                                <div class="input-group w-auto flex-nowrap comment-box-sub ml-4 ml-md-5 mt-3 pt-3 px-3 pb-1">
+                                    <div class="input-group-prepend mr-2">
+                                        <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="text-capitalize mb-1 font-weight-bold">
+                                            <i class="color-pink">{{$sub->name}}</i>
+                                        </div>
+                                        <div class="comment-content font-light"> {!! $sub->description !!}</div>
+                                        <div class="text08 mt-1 ">
+                                        <i><span class="color-gray">{{Carbon\Carbon::parse($sub->created_at)->diffForHumans()}}</span></i> 
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @if($sub->admin == 0)
+                                <div class="input-group w-auto flex-nowrap comment-box-style ml-4 ml-md-5 mt-3 pt-3 px-3 pb-1">
+                                    <div class="input-group-prepend mr-2">
+                                        <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="text-capitalize mb-1 font-weight-bold">
+                                            {{$sub->name}}
+                                            <span class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i id="five" class="fa fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <div class="comment-content font-light">{{$sub->description}}</div>
+                                        <div class="text08 mt-1 ">
+                                        <i><span class="color-gray">{{Carbon\Carbon::parse($sub->created_at)->diffForHumans()}}</span></i> 
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                            @endforeach
+                        @endif
+                    </div>
+                    @endif 
+                    @endforeach
+                    <!-- end comment -->
                 </div>
                 <div class="col-md-4 ">
                     <div class="text-center">
@@ -314,112 +421,6 @@
                 </div>
             </div>
         </div>
-        <!-- cmt -->
-        <div class="container section--default">
-            <div class="w-100">
-                <span class="cmt-title">{{ $commentsTotal }} Hỏi đáp &amp; tư vấn</span>
-                <form class="needs-validation" novalidate action="{{ route('home.store') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <input type="hidden" name="slug" value="{{ $product->slug }}">
-                    <div class="form-group tinymce-wrap mt-3">
-                        <textarea placeholder="Hãy đặt câu hỏi, chúng tôi sẽ tư vấn giúp bạn..." name="description" class="tinymce" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input style="font-size: 13px" required placeholder="Họ tên (bắt buộc)" id="name" name="name" type="text" class="form-control" value="{{ old('name') }}">
-                            <div class="valid-feedback">Tên hợp lệ !</div>
-                            <div class="invalid-feedback">Vui lòng nhập tên !</div>
-                    </div>
-                    <div class="form-group">
-                        <input style="font-size: 13px" required placeholder="Số điện thoại (bắt buộc)" id="phone" name="phone" type="text" class="form-control" value="{{ old('phone') }}">
-                        <div class="valid-feedback">Số điện thoại hợp lệ !</div>
-                        <div class="invalid-feedback">Vui lòng nhập Số điện thoại !</div>
-                    </div>
-                    <button class="btn btn-km" type="submit">Gửi phản hồi</button>
-                </form>
-            </div>
-            @foreach($comments as $comment)
-            @if(empty($comment->parent_id))
-            <div class=" text0 mb-3" id="i-comment-{{$comment->id}}">
-                <div class="input-group w-auto flex-nowrap  comment-box-style mt-4 pt-3 px-3 pb-1">
-                    <div class="input-group-prepend mr-2">
-                        <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
-                    </div>
-                    <div class="w-100">
-                        <div class="text-capitalize mb-1 font-weight-bold">
-                            {{ $comment->name }}
-                            <span class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i id="five" class="fa fa-star"></i>
-					        </span>
-                        </div>
-                        <input type="hidden" name="cmt_name" value="{{ $comment->name }}">
-                        <input type="hidden" name="cmt_phone" value="{{ $comment->phone }}">
-                        <div class="comment-content font-light">
-                            {!! $comment->description !!}
-                        </div>
-                        <div class="text08 mt-1">
-                            <i><span class="color-gray">
-                            Đã đăng {{Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}</span>
-                            </i> 
-                            <a class="ml-2 color-gray product-comment" onclick="addCommentBox({{ $comment->id }},{{ $comment->phone }})"><b style="color: #1979c3">Trả lời</b></a>
-                        </div>
-                    </div>
-                </div>
-                {{-- Show subcomments --}}
-                @if(count($comment->subComments) > 0)
-                    @foreach($comment->subComments as $sub)
-                        @if($sub->admin == 1)
-                        <div class="input-group w-auto flex-nowrap comment-box-sub ml-4 ml-md-5 mt-3 pt-3 px-3 pb-1">
-                            <div class="input-group-prepend mr-2">
-                                <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
-                            </div>
-                            <div class="w-100">
-                                <div class="text-capitalize mb-1 font-weight-bold">
-                                    <i class="color-pink">{{$sub->name}}</i>
-                                </div>
-                                <div class="comment-content font-light"> {!! $sub->description !!}</div>
-                                <div class="text08 mt-1 ">
-                                <i><span class="color-gray">{{Carbon\Carbon::parse($sub->created_at)->diffForHumans()}}</span></i> 
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @if($sub->admin == 0)
-                        <div class="input-group w-auto flex-nowrap comment-box-style ml-4 ml-md-5 mt-3 pt-3 px-3 pb-1">
-                            <div class="input-group-prepend mr-2">
-                                <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
-                            </div>
-                            <div class="w-100">
-                                <div class="text-capitalize mb-1 font-weight-bold">
-                                    {{$sub->name}}
-                                    <span class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i id="five" class="fa fa-star"></i>
-                                    </span>
-                                </div>
-                                <div class="comment-content font-light">{{$sub->description}}</div>
-                                <div class="text08 mt-1 ">
-                                <i><span class="color-gray">{{Carbon\Carbon::parse($sub->created_at)->diffForHumans()}}</span></i> 
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                    @endforeach
-                @endif
-            </div>
-            @endif 
-            @endforeach
-            
-        </div>
-        <!-- cmt end -->
-
         <div class="container section--default long_description">
            <div class="product--same__card">
                 <h5 class="text-uppercase">Sản phẩm tương tự</h5>
@@ -456,18 +457,18 @@
     <script src="{{ asset('backend/dist/js/validation-data.js') }}"></script>
     <script type="text/javascript">
 
-        $('.btn-plus').click(function () {
-            console.log('ss')
-            if ($('#qty').val() < 4 ) {
-                $('#qty').val(parseInt($('#qty').val()) + 1);
-            }
-        });
+        // $('.btn-plus').click(function () {
+        //     console.log('ss')
+        //     if ($('#qty').val() < 4 ) {
+        //         $('#qty').val(parseInt($('#qty').val()) + 1);
+        //     }
+        // });
 
-        $('.btn-minus').click(function () {
-            if ($('#qty').val() > 0) {
-                $('#qty').val(parseInt($('#qty').val()) - 1);
-            }
-        });
+        // $('.btn-minus').click(function () {
+        //     if ($('#qty').val() > 0) {
+        //         $('#qty').val(parseInt($('#qty').val()) - 1);
+        //     }
+        // });
 
         var clickCount = 0;
         function showImage(obj)

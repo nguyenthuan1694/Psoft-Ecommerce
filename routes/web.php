@@ -22,6 +22,7 @@ Route::get('/search', 'HomeController@search')->name('search');
 
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/', 'CartController@index')->name('cart.index');
+    Route::get('/payment', 'CartController@payment')->name('cart.payment');
     Route::get('/checkout', 'CartController@getCheckout')->name('cart.getCheckout');
     Route::post('/checkout', 'CartController@postCheckout')->name('cart.postCheckout');
     Route::post('/', 'CartController@add')->name('cart.add');

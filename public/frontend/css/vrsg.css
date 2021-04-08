@@ -401,12 +401,7 @@ span.qty-cart {
  	position: relative;
  	padding-bottom: 15px;
  }
- .remove-item {
- 	position: absolute;
- 	right: 0;
- 	top: 0;
-    cursor: pointer;
- }
+
  .w-item-mini {
  	width: 65px;
  }
@@ -599,7 +594,7 @@ h3 {
 	text-align: center;
     display: inline-flex;
     border-radius: 3px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .wrap-group-number button {
 	position: absolute;
