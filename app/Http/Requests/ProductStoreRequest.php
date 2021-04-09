@@ -29,6 +29,7 @@ class ProductStoreRequest extends FormRequest
             'slug' => 'required|unique:products,slug|max:255',
             'price' => 'nullable|numeric',
             'cost' => 'nullable|numeric',
+            'stock' => 'nullable|numeric',
             'status' => 'required|numeric',
             'thumbnail' => 'nullable|image|max:1024',
             'images.*' => 'nullable|image|max:2048',

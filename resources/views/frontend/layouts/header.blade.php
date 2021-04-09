@@ -24,9 +24,9 @@
                     <li class="menu-li"><a class="a-li" href="#careers">Liên hệ</a></li>
                 </ul>
             </div>
-            <div style="position: relative;cursor: pointer;right: 250px;">
-                @include('frontend.includes.cart_menu')
-            </div>
+            <!-- <div style="position: relative;cursor: pointer;right: 250px;">
+                @ include('frontend.includes.cart_menu')
+            </div> -->
         </div>
     </nav>
     <div class="px-2" id="content-dash-id" style="display: none;" >

@@ -318,7 +318,7 @@ textarea {
     padding: 10px;
 }
 input:focus,textarea:focus {
-	border-color: #fa8231;
+	border-color: #ebeff8;
 }
 .search input {
 	float: left;

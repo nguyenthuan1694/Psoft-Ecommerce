@@ -125,6 +125,54 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Thông số kỹ thuật -->
+                                <div style="display: block;margin: 0 0px;line-height: 30px;font-size: 14px;color: #333;background: #f3f3f3;text-transform: uppercase;padding: 5px 10px;">
+                                    <strong>Thông số kỹ thuật</strong>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="sku">Màn hình</label>
+                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="sku">Camera sau</label>
+                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="sku">Camera trước</label>
+                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="sku">Hệ điều hành - CPU</label>
+                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="sku">Bộ nhớ - Lưu trữ</label>
+                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="sku">Kết nối</label>
+                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="sku">Thông tin pin - Sạc</label>
+                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <!-- end Thông số kỹ thuật -->
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <label>Images</label>
@@ -146,10 +194,10 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group row">
-                                    <!-- <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <label for="stock">Stock</label>
                                         <input id="stock" name="stock" type="number" class="form-control" min="0" step="1" value="100">
-                                    </div> -->
+                                    </div>
                                     <!-- <div class="col-md-4">
                                         <label for="weight">Weight</label>
                                         <input id="weight" name="weight" type="number" class="form-control">

@@ -24,15 +24,16 @@ class ProductUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'sku' => 'required|unique:products,sku,' . $this->id . '|max:20',
             'name' => 'required|max:255',
             'slug' => 'required|unique:products,slug,' . $this->id . '|max:255',
+            'price' => 'nullable|numeric',
+            'cost' => 'nullable|numeric',
+            'stock' => 'nullable|numeric',
             'status' => 'required|numeric',
             'thumbnail' => 'nullable|image|max:1024',
             'categories.*' => 'nullable|numeric',
             'date_available' => 'nullable|date_format:Y-m-d',
-            'location' => 'nullable|string',
-            'total_area' => 'nullable|string',
-            'type' => 'nullable|string',
             'date_of_delivery' => 'nullable|date_format:Y-m-d',
         ];
     }

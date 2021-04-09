@@ -52,8 +52,8 @@
                 </div>
                 <div class="col-lg-5 col-sm-5 col-xs-12">
                     <div class="wrap-price-detail">
-                        <span class="price mr-2">{{ number_format($product->price, 0) }} đ</span>
-                        <del class="mr-2">{{ number_format($product->cost, 0) }} đ</del>
+                        <span class="price mr-2">{{ number_format($product->cost, 0) }} đ</span>
+                        <del class="mr-2">{{ number_format($product->price, 0) }} đ</del>
                         <span class="btn btn-km">Giảm {{ number_format(($product->price) - ($product->cost)) }} đ</span>
                     </div>
                     <div>
@@ -95,8 +95,8 @@
                                 </span>
                                 <div class="mt-3">
                                     <ul style="color: #333333">
-                                        <li> <i class="fa fa-hand-o-right"></i> Hỗ trợ kích hoạt eSIM miễn phí <a style="color: #0071bb; text-decoration: none;" href="#">(Xem chi tiết)</a></li>
-                                        <li> <i class="fa fa-hand-o-right"></i> Trade-in thu cũ lên đời tiết kiệm đến <strong style="color: #ff0000">19,8 triệu</strong> <a style="color: #0071bb; text-decoration: none;" href="#">(Xem chi tiết)</a></li>
+                                        <li> <i class="fa fa-hand-o-right"></i> Trợ giá khi mua kèm phụ kiện: Mua 1 phụ kiện bất kì giảm 2% </li>
+                                        <li> <i class="fa fa-hand-o-right"></i> Mua 2 phụ kiện khác nhau bất kì giảm 10% (không áp dụng phụ kiện thương hiệu Apple)</li>
                                     </ul>
                                 </div>
                                 <hr>
@@ -121,14 +121,14 @@
                             <input type="hidden" name="qty" value="1">  
                             <div class="fieldset">
                                 <div class="actions">
-                                    <form action="{{ route('cart.index') }}" method="get" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
-                                        <input hidden class="form-control" type="text" id="product_id" name="product_id" value="{{ $product->id }}">
-                                        <button type="submit" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
+                                    <!-- <form action="{{ route('cart.index') }}" method="get" enctype="multipart/form-data"> -->
+                                        <!-- {{ csrf_field() }} -->
+                                        <!-- <input hidden class="form-control" type="text" id="product_id" name="product_id" value="{{ $product->id }}"> -->
+                                        <a href="{{ route('cart.paymentProduct', ['slug' => $product->slug]) }}" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
                                             <span>Mua ngay</span>
                                             <small>Giao tận nơi cho quý khách hàng hoặc nhận hàng tại shop.</small> 
-                                        </button>
-                                    </form>
+                                        </a>
+                                    <!-- </form> -->
                                 </div>
                             </div>
                         </div>
@@ -150,8 +150,7 @@
                         <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-gift"></i></div>
                         <div class="col-md-10">
                             <span style="font-size: 13px">
-                                Bộ sản phẩm: Thân máy, Hộp, Cáp, Cây lấy sim, Sách hướng dẫn 
-                                (Tất cả lô máy từ tháng 10/2020, Apple cắt bỏ tai nghe, củ sạc khỏi bộ sản phẩm bán kèm)
+                                {{ config('common.product.gift.content') }}
                             </span>
                         </div>
                     </div>
@@ -160,7 +159,7 @@
                         <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-shield"></i></div>
                         <div class="col-md-10">
                             <span style="font-size: 13px">
-                                Giá đã bao gồm 10% VAT. Bảo hành 12 tháng Toàn cầu. Bảo hành 1 đổi 1 theo chính sách của Apple Việt Nam (Xem chi tiết)
+                                {{ config('common.product.Guarantee.content') }}
                             </span>
                         </div>
                     </div>
@@ -169,19 +168,27 @@
                         <div class="col-md-2"><i style="font-size: 40px; color: #c2292e" class="fa fa-usd"></i></div>
                         <div class="col-md-10">
                             <span style="font-size: 13px">
-                               <div>
-                                Trả góp 0% qua thẻ tín dụng (Không trả trước, trả hàng tháng chỉ 4.465.000 ₫) hoặc qua 
-                                Paylater
+                               <div style="">
+                                {{ config('common.product.Payment_type.content-1.text-1') }}
+                                <strong style="color: #c2292e">{{ config('common.product.Payment_type.content-1.text-2') }}</strong>
+                                {{ config('common.product.Payment_type.content-1.text-3') }}
                                </div>
-                            <div style="font-size: 13px" class="mt-2">
-                                <p style="background-color: rgba(193, 39, 45, 0.3); padding: 5px; border-radius: 6px">
-                                Trả trước <strong style="color: #c2292e"> 8.037.000 ₫</strong>, trả hàng tháng chỉ <strong style="color: #c2292e">6.251.000 ₫</strong></p>
-                            </div>
-                            <div>
-                                Hoặc Trả góp có lãi suất với trả trước <strong style="color: #c2292e">2.679.000 ₫</strong>, trả hàng tháng 
-                                <strong style="color: #c2292e">4.054.667 ₫</strong> qua nhà tài chính <strong>Home Credit, FE Credit, HD Saison</strong>  (chỉ cần CMND + GPLX)
-                                Hoặc trả góp - trả trước 0đ qua nhà tài chính FE Credit (Thủ tục chỉ cần CMND + Hộ khẩu )
-                            </div>
+                                <div style="font-size: 13px text-align: justify" class="mt-1">
+                                    <p style="background-color: rgba(193, 39, 45, 0.3); padding: 5px; border-radius: 6px">
+                                    {!! config('common.product.Payment_type.content-2.text-1') !!}
+                                    <strong style="color: #c2292e"> {!! config('common.product.Payment_type.content-2.text-2') !!}</strong>
+                                    {!! config('common.product.Payment_type.content-2.text-3') !!}
+                                    <strong style="color: #c2292e"> {!! config('common.product.Payment_type.content-2.text-4') !!}</strong>
+                                </div>
+                                <div>
+                                    {{ config('common.product.Payment_type.content-4.text-1') }}
+                                    <strong style="color: #c2292e">{{ config('common.product.Payment_type.content-4.text-2') }}</strong>
+                                    {{ config('common.product.Payment_type.content-4.text-3') }}
+                                    <strong style="color: #c2292e">{{ config('common.product.Payment_type.content-4.text-4') }}</strong>
+                                    {{ config('common.product.Payment_type.content-4.text-5') }}
+                                    <strong>{{ config('common.product.Payment_type.content-4.text-6') }}</strong>
+                                    {{ config('common.product.Payment_type.content-4.text-7') }}
+                                </div>
                             </span>
                         </div>
                     </div>
@@ -316,12 +323,13 @@
                     <!-- end comment -->
                 </div>
                 <div class="col-md-4 ">
-                    <div class="text-center">
+                    <div class="text-center" style="background-color: #006bb4;color: #FFF;border-radius: 6px;padding: 10px 30px;">
                         <span class="font-weight-bold" style="font-size: 20px;margin: 0 0 15px; padding-bottom: 15px;">Cấu hình | Thông số</span>
                     </div>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-4">
+                    <div>
+                        {!! $product->specifications !!}
+                        <!-- <div class="col-md-4">
                             <span class="font-weight-bold" style="font-size: 14px">Màn Hình</span>
                         </div>
                         <div class="col-md-8">
@@ -330,94 +338,9 @@
                                 <li class="mt-2">Độ phân giải: 1170 x 2532 pixels</li>
                                 <li class="mt-2">Màn hình rộng: 6.1 inches</li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Camera sau</span>
-                        </div>
-                        <div class="col-md-8">
-                            <ul style="font-size: 14px">
-                                <li class="mt-2">Độ phân giải: 12 MP + 12 MP + 12 MP + TOF</li>
-                                <li class="mt-2">Quay phim: 4K@24/30/60fps, 1080p@30/60/120/240fps, HDR, Dolby Vision HDR (up to 60fps)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Camera sau</span>
-                        </div>
-                        <div class="col-md-8">
-                            <ul style="font-size: 14px">
-                                <li class="mt-2">Độ phân giải: 12 MP + 12 MP + 12 MP + TOF</li>
-                                <li class="mt-2">Quay phim: 4K@24/30/60fps, 1080p@30/60/120/240fps, HDR, Dolby Vision HDR (up to 60fps)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Camera trước</span>
-                        </div>
-                        <div class="col-md-8">
-                            <ul style="font-size: 14px">
-                                <li class="mt-2">Độ phân giải: 12 MP</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Hệ điều hành - CPU</span>
-                        </div>
-                        <div class="col-md-8">
-                            <ul style="font-size: 14px">
-                                <li class="mt-2">Hệ điều hành: iOS 14</li>
-                                <li class="mt-2">Chipset (hãng SX CPU): Apple A14 Bionic (5 nm)</li>
-                                <li class="mt-2">Tốc độ CPU: Hexa-core</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Bộ nhớ - Lưu trữ</span>
-                        </div>
-                        <div class="col-md-8">
-                            <ul style="font-size: 14px">
-                                <li class="mt-2">Bộ nhớ trong: 128 GB</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Kết nối</span>
-                        </div>
-                        <div class="col-md-8">
-                            <ul style="font-size: 14px">
-                                <li class="mt-2">Mạng di động: Hỗ trợ 5G</li>
-                                <li class="mt-2">Wifi: Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, hotspot</li>
-                                <li class="mt-2">Bluetooth: 5.0, A2DP, LE</li>
-                                <li class="mt-2">Cổng kết nối/sạc: Lightning, USB 2.0</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Thông tin pin - Sạc</span>
-                        </div>
-                        <div class="col-md-8">
-                            <ul style="font-size: 14px">
-                                <li class="mt-2">Thông tin pin - Sạc Dung lượng pin: 2815 mAh</li>
-                                <li class="mt-2">Loại pin: Li-Ion</li>
-                                <li class="mt-2">Công nghệ pin: Sạc nhanh 20W</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

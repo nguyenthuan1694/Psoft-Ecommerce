@@ -118,12 +118,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label>Thông số kỹ thuật</label>
+                                        <div class="tinymce-wrap">
+                                            <textarea name="specifications" class="tinymce" rows="3">{{ $product->specifications }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label for="stock">Stock</label>
+                                        <input id="stock" name="stock" type="number" class="form-control" min="0" step="1" value="{{ $product->stock }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-md-6">
                                         <label for="date_available">Date available</label>
                                         <input id="date_available" name="date_available" type="text" class="form-control" value="{{ $product->date_available }}">
                                     </div>
                                 </div>
-                                
                                 <div class="float-right">
                                     <a href="{{ route('products.index') }}" class="btn btn-light">CANCEL</a>
                                     <button class="btn btn-info" type="submit">UPDATE</button>

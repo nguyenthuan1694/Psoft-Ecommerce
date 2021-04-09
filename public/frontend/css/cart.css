@@ -212,3 +212,34 @@ input[type="radio"] {
     color: #999999;
     margin: 0 3px 0 -10px;
 }
+
+.buyother a {
+    text-decoration: none;
+}
+
+.btn-buyother {
+    display: block;
+    overflow: hidden;
+    background: #fff;
+    line-height: 40px;
+    text-align: center;
+    margin: 15px auto 20px;
+    width: 300px;
+    font-size: 14px;
+    color: #c10017 !important;
+    clear: both;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid #c10017;
+    border-radius: 5px;
+}
+
+.btn-buyother:hover {
+    background: #c10017;
+    color: #fff !important;
+}
+
+.footer-hotline {
+    text-align: center;
+    font-size: 13px;
+}

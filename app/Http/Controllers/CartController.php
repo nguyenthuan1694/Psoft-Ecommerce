@@ -32,7 +32,7 @@ class CartController extends Controller
         $discount = number_format(session()->get('coupon')['discount'], 0) ?? 0;
         $newSubtotal = number_format(round((float) str_replace(',', '', Cart::subtotal()) - str_replace(',', '', $discount)), 0);
 
-        return view('frontend.cart')
+        return view('frontend.cart.index')
             ->with([
                 'categories' => $categories,
                 'coupon' => $coupon,
@@ -42,14 +42,31 @@ class CartController extends Controller
             ]);
     }
 
+    public function paymentProduct(Request $request)
+    {
+        $product = Product::where('slug',$request->slug)->first();
+        $categories = Category::root()->get();
+        $coupon = session()->get('coupon')['name'];
+        $discount = number_format(session()->get('coupon')['discount'], 0) ?? 0;
+        $newSubtotal = number_format(round((float) str_replace(',', '', Cart::subtotal()) - str_replace(',', '', $discount)), 0);
+        return view('frontend.cart.cart_order')
+        ->with([
+            'categories' => $categories,
+            'coupon' => $coupon,
+            'discount' => $discount,
+            'newSubtotal' => $newSubtotal,
+            'product' => $product,
+        ]);
+    }
+
 
     public function payment(Request $request)
     {
-        return view('frontend.payment');
-        // $product = Product::where('id',$request->product_id)->first();
-        // return view('frontend.payment')
-        //         ->with('product', $product)
-        // ;
+        // return view('frontend.payment');
+        $product = Product::where('id',$request->product_id)->first();
+        return view('frontend.payment')
+                ->with('product', $product)
+        ;
     }
 
     /**

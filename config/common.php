@@ -6,6 +6,34 @@ return [
             'active' => 1,
             'unActive' => 0,
         ],
+        'gift' => [
+            'content' => 'Bộ sản phẩm: Thân máy, Hộp, Cáp, Cây lấy sim, Sách hướng dẫn (Tất cả lô máy từ tháng 10/2020, Apple cắt bỏ tai nghe, củ sạc khỏi bộ sản phẩm bán kèm)',
+        ],
+        'Guarantee' => [
+            'content' => 'Giá đã bao gồm 10% VAT. Bảo hành 12 tháng Toàn cầu. Bảo hành 1 đổi 1 theo chính sách của Apple Việt Nam (Xem chi tiết)',
+        ],
+        'Payment_type' => [
+            'content-1' => [
+                'text-1' => 'Trả góp 0% qua thẻ tín dụng ( Không trả trước, trả hàng tháng chỉ',
+                'text-2' => '4.465.000 ₫',
+                'text-3' => ') hoặc qua Paylater',
+            ],
+            'content-2' => [
+                'text-1' => 'Trả trước',
+                'text-2' => '8.037.000 ₫',
+                'text-3' => 'trả hàng tháng chỉ',
+                'text-4' => ' 6.251.000 ₫',
+            ],
+            'content-4' => [
+                'text-1' => 'Hoặc Trả góp có lãi suất với trả trước',
+                'text-2' => '2.679.000 ₫',
+                'text-3' => 'trả hàng tháng',
+                'text-4' => '4.054.667 ₫',
+                'text-5' => 'qua nhà tài chính',
+                'text-6' => 'Home Credit, FE Credit, HD Saison',
+                'text-7' => '(chỉ cần CMND + GPLX) Hoặc trả góp - trả trước 0đ qua nhà tài chính FE Credit (Thủ tục chỉ cần CMND + Hộ khẩu )',
+            ],
+        ],
         'type' => [
             'Sản phẩm mặc định' => 0,
             'Sản phẩm nổi bật' => 1,
