@@ -118,13 +118,12 @@
                             </a>
                         </div>
                         <div class="box-tocart">
-                            <input type="hidden" name="qty" value="1">  
                             <div class="fieldset">
                                 <div class="actions">
                                     <!-- <form action="{{ route('cart.index') }}" method="get" enctype="multipart/form-data"> -->
                                         <!-- {{ csrf_field() }} -->
                                         <!-- <input hidden class="form-control" type="text" id="product_id" name="product_id" value="{{ $product->id }}"> -->
-                                        <a href="{{ route('cart.paymentProduct', ['slug' => $product->slug]) }}" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
+                                        <a href="{{ route('cart.paymentProduct', ['slug' => $product->slug]) }}" onclick="addToCart({{$product->id}}, {{$product->qty}})" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
                                             <span>Mua ngay</span>
                                             <small>Giao tận nơi cho quý khách hàng hoặc nhận hàng tại shop.</small> 
                                         </a>
@@ -327,20 +326,20 @@
                         <span class="font-weight-bold" style="font-size: 20px;margin: 0 0 15px; padding-bottom: 15px;">Cấu hình | Thông số</span>
                     </div>
                     <hr>
-                    <div>
-                        {!! $product->specifications !!}
-                        <!-- <div class="col-md-4">
-                            <span class="font-weight-bold" style="font-size: 14px">Màn Hình</span>
+                    @foreach($specifications as $key => $item)
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="font-weight-bold" style="font-size: 14px">{{ $key }}</span>
                         </div>
                         <div class="col-md-8">
                             <ul style="font-size: 14px">
-                                <li class="mt-2">Công nghệ màn hình: Super Retina XDR OLED</li>
-                                <li class="mt-2">Độ phân giải: 1170 x 2532 pixels</li>
-                                <li class="mt-2">Màn hình rộng: 6.1 inches</li>
+                                <li class="mt-2">{{ $item }}</li>
                             </ul>
-                        </div> -->
+                        </div>
                     </div>
                     <hr>
+                    @endforeach
+                 
                 </div>
             </div>
         </div>

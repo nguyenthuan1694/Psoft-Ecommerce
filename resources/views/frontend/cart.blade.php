@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <hr>
-                    <form action="{{ route('cart.index') }}" method="get" enctype="multipart/form-data">
+                    <form action="{{ route('cart.payment') }}" method="get" enctype="multipart/form-data">
                         <div class="form-group">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <button style="border: 0" class="col-info" type="submit">Đặt hàng trước, thanh toán sau

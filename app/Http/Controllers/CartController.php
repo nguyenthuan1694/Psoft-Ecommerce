@@ -44,6 +44,7 @@ class CartController extends Controller
 
     public function paymentProduct(Request $request)
     {
+        $cart = Cart::content();
         $product = Product::where('slug',$request->slug)->first();
         $categories = Category::root()->get();
         $coupon = session()->get('coupon')['name'];
@@ -56,13 +57,13 @@ class CartController extends Controller
             'discount' => $discount,
             'newSubtotal' => $newSubtotal,
             'product' => $product,
+            'cart' => $cart,
         ]);
     }
 
 
     public function payment(Request $request)
     {
-        // return view('frontend.payment');
         $product = Product::where('id',$request->product_id)->first();
         return view('frontend.payment')
                 ->with('product', $product)

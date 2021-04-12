@@ -81,12 +81,24 @@ class HomeController extends Controller
     public function showProduct(Request $request, $slug)
     {
         $product = $this->productRepository->getProductBySlug($slug);
+        // Array Thông số kỹ thuật
+        $specifications = [
+            "Màn hình" => $product->screen,
+            "camera sau" => $product->camera_rear,
+            "camera trước" => $product->camera_front,
+            "Hệ điều hành - CPU" => $product->cpu,
+            "Bộ nhớ - Lưu trữ" => $product->memory,
+            "Kết nối" => $product->connect,
+            "Thông tin pin - Sạc" => $product->charging,
+        ];
+        // dd($specifications);
         $products = $this->productRepository->getProductOtherSlug($slug);
         $comments = $this->commentRepository->getCommentWithProductSubcomment($product->id);
         $commentsTotal = $comments->count();
         return view('frontend.product')
                 ->with('product', $product)
                 ->with('products', $products)
+                ->with('specifications', $specifications)
                 ->with('comments', $comments)
                 ->with('commentsTotal', $commentsTotal)
         ;

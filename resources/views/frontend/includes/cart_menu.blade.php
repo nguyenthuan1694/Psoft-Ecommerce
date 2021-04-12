@@ -7,7 +7,7 @@
             @foreach($cart::content() as $product)
                 <div class="item-view-cart">
                     <div class="w-item-mini">
-                        <img src="#" alt="">
+                        <img src="{{ $product->options->img }}" alt="">
                     </div>
                     <div class="content-text-item">
                         <a href="#">{{ $product->name }}</a>
@@ -20,7 +20,7 @@
 
         <div class="wrap-total-fee">
             <!-- <p class="mb-0">Phí ship: <span class="float-right">10,000 VNĐ</span></p> -->
-            <p>Tạm tính: <span class="float-right"><strong id="cart_total">1 VNĐ</strong></span></p>
+            <p>Tạm tính: <span class="float-right"><strong id="cart_total">{{ $cart::total() }}VNĐ</strong></span></p>
             <div class="wrap-btn-event">
                 <a href="{{ route('cart.index') }}" class="btn-default">Giỏ hàng</a>
                 <a href="{{ route('cart.getCheckout') }}" class="btn-default">Thanh toán</a>

@@ -133,13 +133,11 @@
                 $('#qty').val(parseInt($('#qty').val()) + 1);
             }
         });
-
         $('.btn-minus').click(function () {
             if ($('#qty').val() > 0) {
                 $('#qty').val(parseInt($('#qty').val()) - 1);
             }
         });
-
         function setShipping(obj)
 	    {
             $this=$(obj);

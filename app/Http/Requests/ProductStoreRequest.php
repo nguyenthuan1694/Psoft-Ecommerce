@@ -35,6 +35,13 @@ class ProductStoreRequest extends FormRequest
             'images.*' => 'nullable|image|max:2048',
             'categories.*' => 'nullable|numeric',
             'product_type' => 'required|numeric',
+            'screen' => 'required|max:255',
+            'camera_rear' => 'required|max:255',
+            'camera_front' => 'required|max:255',
+            'cpu' => 'required|max:255',
+            'memory' => 'required|max:255',
+            'connect' => 'required|max:255',
+            'charging' => 'required|max:255',
             'date_available' => 'nullable|date_format:Y-m-d'
         ];
     }

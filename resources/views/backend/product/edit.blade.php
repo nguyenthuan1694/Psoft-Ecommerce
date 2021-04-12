@@ -117,14 +117,54 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Thông số kỹ thuật -->
+                                <div style="display: block;margin: 0 0px;line-height: 30px;font-size: 14px;color: #333;background: #f3f3f3;text-transform: uppercase;padding: 5px 10px;">
+                                    <strong>Thông số kỹ thuật</strong>
+                                </div>
                                 <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label>Thông số kỹ thuật</label>
-                                        <div class="tinymce-wrap">
-                                            <textarea name="specifications" class="tinymce" rows="3">{{ $product->specifications }}</textarea>
-                                        </div>
+                                    <div class="col-md-6">
+                                        <label for="screen">Màn hình</label>
+                                        <input id="screen" type="text" class="form-control" name="screen" value="{{ $product->screen }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="camera_rear">Camera sau</label>
+                                        <input id="camera_rear" type="text" class="form-control" name="camera_rear" value="{{ $product->camera_rear }}" required>
+                                        <small class="form-text text-muted">*Required</small>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="camera_front">Camera trước</label>
+                                        <input id="camera_front" type="text" class="form-control" name="camera_front" value="{{ $product->camera_front }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="cpu">Hệ điều hành - CPU</label>
+                                        <input id="cpu" type="text" class="form-control" name="cpu" value="{{ $product->cpu }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="memory">Bộ nhớ - Lưu trữ</label>
+                                        <input id="memory" type="text" class="form-control" name="memory" value="{{ $product->memory }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="connect">Kết nối</label>
+                                        <input id="connect" type="text" class="form-control" name="connect" value="{{ $product->connect }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="charging">Thông tin pin - Sạc</label>
+                                        <input id="charging" type="text" class="form-control" name="charging" value="{{ $product->charging }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <!-- end Thông số kỹ thuật -->
                                 <div class="form-group row">
                                     <div class="col-md-4">
                                         <label for="stock">Stock</label>

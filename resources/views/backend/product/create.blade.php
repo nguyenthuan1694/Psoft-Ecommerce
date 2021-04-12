@@ -131,44 +131,44 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <label for="sku">Màn hình</label>
-                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <label for="screen">Màn hình</label>
+                                        <input id="screen" type="text" class="form-control" name="screen" value="{{ old('screen') }}" required>
                                         <small class="form-text text-muted">*Required</small>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="sku">Camera sau</label>
-                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
-                                        <small class="form-text text-muted">*Required</small>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label for="sku">Camera trước</label>
-                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
-                                        <small class="form-text text-muted">*Required</small>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="sku">Hệ điều hành - CPU</label>
-                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <label for="camera_rear">Camera sau</label>
+                                        <input id="camera_rear" type="text" class="form-control" name="camera_rear" value="{{ old('camera_rear') }}" required>
                                         <small class="form-text text-muted">*Required</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <label for="sku">Bộ nhớ - Lưu trữ</label>
-                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <label for="camera_front">Camera trước</label>
+                                        <input id="camera_front" type="text" class="form-control" name="camera_front" value="{{ old('camera_front') }}" required>
                                         <small class="form-text text-muted">*Required</small>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="sku">Kết nối</label>
-                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <label for="cpu">Hệ điều hành - CPU</label>
+                                        <input id="cpu" type="text" class="form-control" name="cpu" value="{{ old('cpu') }}" required>
                                         <small class="form-text text-muted">*Required</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <label for="sku">Thông tin pin - Sạc</label>
-                                        <input id="sku" type="text" class="form-control" name="sku" value="{{ old('sku') }}" required>
+                                        <label for="memory">Bộ nhớ - Lưu trữ</label>
+                                        <input id="memory" type="text" class="form-control" name="memory" value="{{ old('memory') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="connect">Kết nối</label>
+                                        <input id="connect" type="text" class="form-control" name="connect" value="{{ old('connect') }}" required>
+                                        <small class="form-text text-muted">*Required</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="charging">Thông tin pin - Sạc</label>
+                                        <input id="charging" type="text" class="form-control" name="charging" value="{{ old('charging') }}" required>
                                         <small class="form-text text-muted">*Required</small>
                                     </div>
                                 </div>

@@ -84,23 +84,23 @@ jQuery(document).ready(function($){
 	});
 	}*/
 	/*-----------------------END SLICK---------------------------------*/
-	$('.remove-item').click(function() {
-		$(this).parents('.item-view-cart').remove();
-	})
-	$('.btn-plus').click(function() {
-		var input = $(this).siblings('input');
-		input.val(+input.val()+1);
-	})
-	$('.btn-minus').click(function() {
-		var input = $(this).siblings('input');
-		if(input.val() >1){
-			input.val(+input.val()-1);
-		}
-		else {
-			$('#cartModal').modal('show')
-		}
+	// $('.remove-item').click(function() {
+	// 	$(this).parents('.item-view-cart').remove();
+	// })
+	// $('.btn-plus').click(function() {
+	// 	var input = $(this).siblings('input');
+	// 	input.val(+input.val()+1);
+	// })
+	// $('.btn-minus').click(function() {
+	// 	var input = $(this).siblings('input');
+	// 	if(input.val() >1){
+	// 		input.val(+input.val()-1);
+	// 	}
+	// 	else {
+	// 		$('#cartModal').modal('show')
+	// 	}
 
-	})
+	// })
 	$('.backtotop').click(function() {
 		$("html, body").animate({ scrollTop: 0 }, "slow");
 	})
