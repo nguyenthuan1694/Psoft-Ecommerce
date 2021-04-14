@@ -454,6 +454,39 @@
         document.getElementById('i-comment-temp').focus();
         
     }
+
+    // add order
+    function addToCart(id, qty) {
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('cart.add') }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: id,
+                    qty: qty
+                }
+            }).then(function (res) {
+                // $('#cart_qty').html(res.data.count);
+                // $('#cart_content').html(function () {
+                //     let html = '';
+                //     res.data.content.forEach(function (e) {
+                //        html = html +
+                //            `<div class="item-view-cart">
+                //                 <div class="w-item-mini">
+                //                     <img src="${e.options.img}" alt="">
+                //                 </div>
+                //                 <div class="content-text-item">
+                //                     <a href="#">${e.name}</a>
+                //                     <p>${e.qty} x ${e.price} VNĐ</p>
+                //                 </div>
+                //                 <span class="remove-item" onclick="removeFromCart('${e.rowId}')"><i class="ti-close"></i></span>
+                //             </div>`;
+                //     });
+                //     return html;
+                // })
+                // $('#cart_total').html(res.data.total);
+            });
+        }
     </script>
     <script src="{{ asset('frontend/js/product.js') }}"></script>
 @endsection

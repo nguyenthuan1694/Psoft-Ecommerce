@@ -133,7 +133,7 @@ class HomeController extends Controller
      */
     public function store(CommentStoreRequest $request)
     {
-        $this->CommentRepository->create($request->all());
+        $this->commentRepository->create($request->all());
         return redirect()->route('product', [$request->slug])->with('success', 'You have successfully created a new product');
     }
 }

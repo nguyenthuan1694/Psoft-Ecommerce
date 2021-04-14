@@ -44,7 +44,7 @@ class CartController extends Controller
 
     public function paymentProduct(Request $request)
     {
-        $cart = Cart::content();
+        // $cart = Cart::content();
         $product = Product::where('slug',$request->slug)->first();
         $categories = Category::root()->get();
         $coupon = session()->get('coupon')['name'];
@@ -57,7 +57,6 @@ class CartController extends Controller
             'discount' => $discount,
             'newSubtotal' => $newSubtotal,
             'product' => $product,
-            'cart' => $cart,
         ]);
     }
 
@@ -80,12 +79,11 @@ class CartController extends Controller
     {
         $productId = $request->get('product_id');
         $qty = $request->get('qty') ?? 1;
-
         $product = Product::find($productId);
         Cart::add([
             'id' => $productId,
             'name' => $product->name,
-            'qty' => $qty,
+            'qty'  => $qty,
             'price' => $product->price,
             'weight' => $product->weight ?? 0,
             'options' => [
@@ -93,7 +91,6 @@ class CartController extends Controller
                 'sku' => $product->sku,
             ]
         ]);
-
         return response()->json([
             'status' => 200,
             'message' => 'Add success',
@@ -190,21 +187,20 @@ class CartController extends Controller
     public function postCheckout(CheckoutRequest $request)
     {
         $cartInfo = Cart::content();
-
         $coupon = Coupon::where('code', session()->get('coupon')['name'])->first();
         $discount = isset($coupon) ? $coupon->discount(Cart::subtotal()) : 0;
 
         $courier = Courier::where('province_code', $request->province_code)->where('district_code', $request->district_code)->first();
         $shipping = $courier->amount ?? config('common.shipping.default_fee');
 
-        $ward = Ward::where('code', $request->ward_code)->first()->name_with_type;
-        $district = District::where('code', $request->district_code)->first()->name_with_type;
-        $province = City::where('code', $request->province_code)->first()->name_with_type;
-        $address = "{$request->house_number}, {$ward}, {$district}, {$province}";
+        // $ward = Ward::where('code', $request->ward_code)->first()->name_with_type;
+        // $district = District::where('code', $request->district_code)->first()->name_with_type;
+        // $province = City::where('code', $request->province_code)->first()->name_with_type;
+        // $address = "{$request->house_number}, {$ward}, {$district}, {$province}";
 
         $order = Order::create([
             'fullname' => $request->get('fullname'),
-            'address' => $address,
+            'address' => 'adsadsadsadsadasdsa',
             'phone' => $request->get('phone'),
             'email' => $request->get('email'),
             'coupon_id' => $coupon->id ?? null,
