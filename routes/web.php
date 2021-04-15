@@ -22,7 +22,8 @@ Route::get('/search', 'HomeController@search')->name('search');
 
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/', 'CartController@index')->name('cart.index');
-    Route::get('/order/{slug}', 'CartController@paymentProduct')->name('cart.paymentProduct');
+    // Route::get('/order/{slug}', 'CartController@paymentProduct')->name('cart.paymentProduct');
+    Route::get('/order', 'CartController@paymentProduct')->name('cart.paymentProduct');
     Route::get('/payment', 'CartController@payment')->name('cart.payment');
     Route::get('/checkout', 'CartController@getCheckout')->name('cart.getCheckout');
     Route::post('/checkout', 'CartController@postCheckout')->name('cart.postCheckout');

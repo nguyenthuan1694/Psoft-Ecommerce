@@ -33,7 +33,9 @@
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/slick.js') }}"></script>
     <script src="{{ asset('frontend/js/vrsg.js') }}"></script>
-
+     <!-- Toastr JS -->
+    <script src="{{ asset('backend/vendors/jquery-toast-plugin/dist/jquery.toast.min.js') }}"></script>
+    @include('frontend.includes.notifications')
     @yield('script')
 </body>
 </html>

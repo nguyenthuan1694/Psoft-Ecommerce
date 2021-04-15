@@ -44,6 +44,7 @@ class CartController extends Controller
 
     public function paymentProduct(Request $request)
     {
+        // dd($request->product_id);
         // $cart = Cart::content();
         $product = Product::where('slug',$request->slug)->first();
         $categories = Category::root()->get();
@@ -200,7 +201,7 @@ class CartController extends Controller
 
         $order = Order::create([
             'fullname' => $request->get('fullname'),
-            'address' => 'adsadsadsadsadasdsa',
+            'address' => 'test address',
             'phone' => $request->get('phone'),
             'email' => $request->get('email'),
             'coupon_id' => $coupon->id ?? null,
@@ -209,7 +210,7 @@ class CartController extends Controller
             'subtotal' => str_replace(',', '', Cart::subtotal()),
             'total' => str_replace(',', '', Cart::total()),
             'balance' => str_replace(',', '', Cart::total()),
-            'payment_method_id' => $request->payment,
+            'payment_method_id' => $request->payment ?? 1,
             'status' => config('common.order.status.ordered'),
             'note' => $request->get('note'),
         ]);

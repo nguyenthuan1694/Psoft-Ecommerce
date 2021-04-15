@@ -123,7 +123,9 @@
                                     <!-- <form action="{{ route('cart.index') }}" method="get" enctype="multipart/form-data"> -->
                                         <!-- {{ csrf_field() }} -->
                                         <!-- <input hidden class="form-control" type="text" id="product_id" name="product_id" value="{{ $product->id }}"> -->
-                                        <a href="{{ route('cart.paymentProduct', ['slug' => $product->slug]) }}" onclick="addToCart({{$product->id}}, {{$product->qty}})" class="action primary tocart  btn-go-cart" id="product-addtocart-button">
+                                        <!--  -->
+                                        <!--  -->
+                                        <a href="{{ route('cart.paymentProduct') }}" onclick="addToCart({{$product->id}}, {{$product->qty}})"  class="action primary tocart  btn-go-cart" id="product-addtocart-button">
                                             <span>Mua ngay</span>
                                             <small>Giao tận nơi cho quý khách hàng hoặc nhận hàng tại shop.</small> 
                                         </a>

@@ -6,7 +6,6 @@
     <section>
         <div class="container cart__card">
             <table class="table" id="order-entry">
-                {{ Cart::content() }}
             @foreach(Cart::content() as $product)
                 <tr>
                     <td><img class="img-fluid img-thumbnail" style="width: 100px; height: auto"  src="{{ asset($product->options->img) }}" alt="img"></td>
@@ -16,7 +15,8 @@
                         <input type="hidden" class="productId" value="{{ $product->id }}">
                     </td>
                     <td>
-                        <input type="number" class="form-calc form-qty item-count form-control" value="{{ $product->qty }}">
+                        <input type="hidden" class="qq" value="{{ $product->qty }}">
+                        <input type="text" min="0" max="5" class="form-calc form-qty item-count form-control" value="{{ $product->qty }}">
                     </td>
                     <td>
                         <button class="delete-item btn btn-danger" onclick="removeFromCart('{{$product->rowId}}')" data-name="{{ $product->name }}">X</button>
@@ -34,21 +34,42 @@
                 </tr>
             </table>
             <hr>
-            <span style="padding: 15px 30px;" class="font-weight-bold">Thông tin mua hàng</span>
-            <!-- < form action=""> -->
+            <span style="padding: 15px 30px;" class="font-weight-bold">Thông tin khách hàng</span>
+            <form name="checkout" action="{{ route('cart.postCheckout') }}" method="post">
+                
+                @csrf
                 <div style="padding: 15px 30px">
+                    <!-- @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                           <p style="color: #dc3545">{{ $error }}</p>
+                        @endforeach
+                    @endif -->
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <label for="name" style="font-size: 14px">Họ và tên</label>
-                            <input style="font-size: 14px" type="text" placeholder="Vui lòng nhập họ tên" class="form-control">
-                            <!-- <small class="form-text text-muted">*Required</small> -->
+                            <label for="fullname" style="font-size: 14px">Họ và tên</label>
+                            <input style="font-size: 14px" id="fullname" name="fullname" type="text" placeholder="Vui lòng nhập họ tên" class="form-control @error('fullname') is-invalid @enderror">
+                            @error('fullname')<small style="color: #dc3545">*Vui lòng nhập họ tên</small>@enderror
                         </div>
                         <div class="col-md-6">
-                            <label for="phone" style="font-size: 14px">Số điện thoại</label>
-                            <input style="font-size: 14px" type="text" placeholder="Vui lòng nhập số điện thoại" class="form-control">
-                            <!-- <small class="form-text text-muted">*Required</small> -->
+                            <label for="email" style="font-size: 14px">Email</label>
+                            <input style="font-size: 14px" id="email" name="email" type="text" placeholder="Vui lòng nhập email" class="form-control  @error('email') is-invalid @enderror">
+                            @error('email')<small class="form-text text-muted">*Vui lòng nhập email</small>@enderror
                         </div>
                     </div>
+                    <div class="form-group row">
+                        
+                        <div class="col-md-6">
+                            <label for="phone" style="font-size: 14px">Số điện thoại</label>
+                            <input style="font-size: 14px" id="phone" name="phone" type="text" placeholder="Vui lòng nhập số điện thoại" class="form-control  @error('phone') is-invalid @enderror">
+                            @error('phone')<small style="color: #dc3545">*Vui lòng nhập số điện thoại</small>@enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="house_number" style="font-size: 14px">Số nhà</label>
+                            <input style="font-size: 14px" type="text" name="house_number" placeholder="*Số nhà" class="form-control @error('house_number') is-invalid @enderror">
+                            @error('house_number')<small style="color: #dc3545">*Vui lòng nhập Số nhà</small>@enderror
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <div class="col-md-12">
                             <textarea placeholder="Ghi chú thêm nếu có..." name="description" class="tinymce" rows="3"></textarea>
@@ -59,8 +80,8 @@
                     </div>
                     <div class="form-group mode-choose">
                         <div class="choose-label">
-                            <a href="#" data-ship="at_shop" onclick="return setShipping(this);">Nhận hàng tại cửa hàng</a>
-                            <a href="#" data-ship="at_home" onclick="return setShipping(this);">Giao hàng tận nơi</a>
+                            <a href="#" data-ship="at_shop" onclick="setShipping(this);">Nhận hàng tại cửa hàng</a>
+                            <a href="#" data-ship="at_home" onclick="setShipping(this);">Giao hàng tận nơi</a>
                         </div>
                     </div>
 
@@ -81,11 +102,11 @@
                                         <div class="form-group row">
                                             <div class="col-md-6">
                                                 <label for="name" style="font-size: 14px">Tỉnh/Thành phố</label>
-                                                <input style="font-size: 14px" id="name" name="name" type="text" placeholder="Vui lòng nhập họ tên" class="form-control" value="">
+                                                <input style="font-size: 14px"  type="text" placeholder="Vui lòng nhập họ tên" class="form-control" value="">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="phone" style="font-size: 14px">Quận/Huyện</label>
-                                                <input style="font-size: 14px" id="phone" name="phone" type="text" placeholder="Vui lòng nhập số điện thoại" class="form-control" value="">
+                                                <input style="font-size: 14px"  type="text" placeholder="Vui lòng nhập số điện thoại" class="form-control" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -99,17 +120,17 @@
                         </div>
                     </div>
                     <hr>
-                    <form action="{{ route('cart.getCheckout') }}" method="get" enctype="multipart/form-data">
+                    <!-- <form action="{{ route('cart.getCheckout') }}" method="get" enctype="multipart/form-data"> -->
                         <div class="form-group">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <button style="border: 0" class="col-info" type="submit">Đặt hàng trước, thanh toán sau
+                            <button name="btnCheckout" style="border: 0" class="col-info" type="submit">Đặt hàng trước, thanh toán sau
                                 <span>(Thanh toán tại nhà hoặc tại cửa hàng)</span>
                             </button>
                             <!-- <div class="orpayment">
                                 <span>Hoặc thanh toán Online</span>
                             </div> -->
                         </div>
-                    </form>
+                    <!-- </form> -->
                     <!-- <div class="form-group">
                         <div class="list-payment-online">
                             <div class="item-payment">
@@ -121,7 +142,7 @@
                         </div>
                     </div> -->
                 </div>
-            <!-- </ form> -->
+            </form>
         </div>
     </section>
 @endsection
@@ -132,12 +153,23 @@
 		    $(this).parents('.item-view-cart').remove();
         });
 
-        $("#order-entry").on("keyup mouseup", ".form-calc", function() {
+        $("#order-entry").on("change", ".form-calc", function() {
+            
             var parent = $(this).closest("tr");
-            var qty = parent.find(".form-qty").val();
-            console.log(qty)
+            
+            var qty = parent.find(".qq").val();
+            var qtyc = parent.find(".form-qty").val();
+
+            if(qty > qtyc) {
+                var a = (qtyc - qty)
+            } else {
+                var a = qtyc - qty;
+            }
             var productId = parent.find(".productId").val();
+            // console.log(parent.find(".form-qty").val())
+            addToCart(productId, a);
             var price = new Intl.NumberFormat('en').format(parent.find(".form-qty").val() * parent.find(".form-cost").val());
+            // console.log(price)
             var priceHidden = parent.find(".form-qty").val() * parent.find(".form-cost").val();
             parent.find(".price").val(priceHidden);
             parent.find(".form-line").val(price);
@@ -146,11 +178,11 @@
             $(".price").each(function(){
                 totalPrice += parseFloat($(this).val()||0);
             });
-            $(".form-line").each(function(){
+            $(".form-line").each(function() {
                 total += parseFloat($(this).val()||0);
             });
             $("#total").text(new Intl.NumberFormat('en').format(totalPrice)+ ' đ');
-            addToCart(productId, qty);
+           
         });
 
         // add order
@@ -276,5 +308,9 @@
             // })
           });
         }
+
+        $('button[name="btnCheckout"]').click(function () {
+            $('form[name="checkout"]').submit();
+        });
     </script>
 @endsection
