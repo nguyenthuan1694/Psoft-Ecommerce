@@ -27,9 +27,9 @@ class CheckoutRequest extends FormRequest
             'fullname' => 'required',
             'email' => 'required|email',
             'house_number' => 'required|max:50',
-            // 'ward_code' => 'required|numeric',
-            // 'district_code' => 'required|numeric',
-            // 'province_code' => 'required|numeric',
+            'ward_code' => 'required|numeric',
+            'district_code' => 'required|numeric',
+            'province_code' => 'required|numeric',
             'phone' => 'required|digits_between:10,12',
             'note' => 'max:255'
         ];

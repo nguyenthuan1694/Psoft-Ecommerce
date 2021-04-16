@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateCitiesTable extends Migration
+class CreateHcvnTables extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,12 @@ class CreateCitiesTable extends Migration
     public function up()
     {
         $tableNames = config('hcvn.table_names');
+
         if (empty($tableNames)) {
             throw new \Exception('Error: config/hcvn.php not found and defaults could not be merged. Please publish the package configuration before proceeding.');
         }
-        Schema::create('cities', function (Blueprint $table) {
+
+        Schema::create($tableNames['cities'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug')->index();
@@ -49,6 +51,8 @@ class CreateCitiesTable extends Migration
             $table->string('code')->index();
             $table->string('parent_code')->index();
         });
+
+
     }
 
     /**

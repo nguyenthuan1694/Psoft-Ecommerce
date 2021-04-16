@@ -128,7 +128,6 @@
 @section('script')
     <script type="text/javascript">
         $('.btn-plus').click(function () {
-            console.log('ss')
             if ($('#qty').val() < 4 ) {
                 $('#qty').val(parseInt($('#qty').val()) + 1);
             }

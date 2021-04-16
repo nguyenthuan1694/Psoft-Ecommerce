@@ -44,8 +44,7 @@ class CartController extends Controller
 
     public function paymentProduct(Request $request)
     {
-        // dd($request->product_id);
-        // $cart = Cart::content();
+        $provinces = Province::orderBy('name')->get();
         $product = Product::where('slug',$request->slug)->first();
         $categories = Category::root()->get();
         $coupon = session()->get('coupon')['name'];
@@ -58,6 +57,7 @@ class CartController extends Controller
             'discount' => $discount,
             'newSubtotal' => $newSubtotal,
             'product' => $product,
+            'provinces' => $provinces,
         ]);
     }
 
@@ -194,14 +194,14 @@ class CartController extends Controller
         $courier = Courier::where('province_code', $request->province_code)->where('district_code', $request->district_code)->first();
         $shipping = $courier->amount ?? config('common.shipping.default_fee');
 
-        // $ward = Ward::where('code', $request->ward_code)->first()->name_with_type;
-        // $district = District::where('code', $request->district_code)->first()->name_with_type;
-        // $province = City::where('code', $request->province_code)->first()->name_with_type;
-        // $address = "{$request->house_number}, {$ward}, {$district}, {$province}";
+        $ward = Ward::where('code', $request->ward_code)->first()->name_with_type;
+        $district = District::where('code', $request->district_code)->first()->name_with_type;
+        $province = City::where('code', $request->province_code)->first()->name_with_type;
+        $address = "{$request->house_number}, {$ward}, {$district}, {$province}";
 
         $order = Order::create([
             'fullname' => $request->get('fullname'),
-            'address' => 'test address',
+            'address' => $address,
             'phone' => $request->get('phone'),
             'email' => $request->get('email'),
             'coupon_id' => $coupon->id ?? null,

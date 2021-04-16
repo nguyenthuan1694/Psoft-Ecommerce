@@ -3,8 +3,17 @@
 @section('content')
     {{ Breadcrumbs::render('cart') }}
     <link rel="stylesheet" href="{{ asset('frontend/css/cart.css') }}">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <section>
+        <div class="container" style="max-width: 800px">
+            <div class="mb-2">
+                <a href="/" style="text-decoration: none; color: #0056b3;"><i class="fa fa-reply"></i>   Mua thêm sản phẩm khác</a>
+            </div>
+        </div>
         <div class="container cart__card">
+            <div class="mb-2">
+                <span style="padding: 10px" class="font-weight-bold">Thông tin đơn hàng</span>
+            </div>
             <table class="table" id="order-entry">
             @foreach(Cart::content() as $product)
                 <tr>
@@ -34,7 +43,7 @@
                 </tr>
             </table>
             <hr>
-            <span style="padding: 15px 30px;" class="font-weight-bold">Thông tin khách hàng</span>
+            <span style="padding: 10px;" class="font-weight-bold">Thông tin khách hàng</span>
             <form name="checkout" action="{{ route('cart.postCheckout') }}" method="post">
                 
                 @csrf
@@ -70,12 +79,28 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <textarea placeholder="Ghi chú thêm nếu có..." name="description" class="tinymce" rows="3"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <select id="province" name="province_code" class="col-md-4 form-control custom-select @error('province_code') is-invalid @enderror">
+                            <option value="" selected>Tỉnh / Thành phố </option>
+                            @foreach($provinces as $province)
+                                <option value="{{ $province->code }}">{{ $province->name_with_type }}</option>
+                            @endforeach
+                        </select>
+                        @error('province_code')<small style="color: #dc3545">*Vui lòng chọn Tỉnh/Thành phố</small>@enderror
                     </div>
                     <div class="form-group">
+                        <select id="district" name="district_code" class="col-md-4 form-control custom-select @error('district_code') is-invalid @enderror">
+                            <option value="" selected>Quận / Huyện</option>
+                        </select>
+                        @error('district_code')<small style="color: #dc3545">*Vui lòng chọn Quận / Huyện</small>@enderror
+                    </div>
+                    <div class="form-group">
+                        <select id="ward" name="ward_code" class="col-md-4 form-control custom-select @error('ward_code') is-invalid @enderror">
+                            <option value="" selected>Phường / Xã</option>
+                        </select>
+                        @error('ward_code')<small style="color: #dc3545">*Vui lòng chọn Phường / Xã</small>@enderror
+                    </div>
+                    <!-- <div class="form-group">
                         <span class="font-weight-bold">Chọn cách thức nhận hàng</span>
                     </div>
                     <div class="form-group mode-choose">
@@ -118,11 +143,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <hr>
                     <!-- <form action="{{ route('cart.getCheckout') }}" method="get" enctype="multipart/form-data"> -->
                         <div class="form-group">
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            
                             <button name="btnCheckout" style="border: 0" class="col-info" type="submit">Đặt hàng trước, thanh toán sau
                                 <span>(Thanh toán tại nhà hoặc tại cửa hàng)</span>
                             </button>
@@ -161,15 +186,13 @@
             var qtyc = parent.find(".form-qty").val();
 
             if(qty > qtyc) {
-                var a = (qtyc - qty)
+                var sl = (qtyc - qty)
             } else {
-                var a = qtyc - qty;
+                var sl = qtyc - qty;
             }
             var productId = parent.find(".productId").val();
-            // console.log(parent.find(".form-qty").val())
-            addToCart(productId, a);
+            addToCart(productId, sl);
             var price = new Intl.NumberFormat('en').format(parent.find(".form-qty").val() * parent.find(".form-cost").val());
-            // console.log(price)
             var priceHidden = parent.find(".form-qty").val() * parent.find(".form-cost").val();
             parent.find(".price").val(priceHidden);
             parent.find(".form-line").val(price);

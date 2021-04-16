@@ -2,23 +2,44 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('frontend/css/home.css') }}">
-    <section style="padding-top: 47px">
-        <div class="section--default">
-            <div class="gallery gallery-responsive portfolio_slider">
-                <div class="inner"><img src="{{ asset('frontend/images/banner-1.webp') }}"></div>
-                <div class="inner"><img src="{{ asset('frontend/images/banner-2.webp') }}"></div>
-                <div class="inner"><img src="{{ asset('frontend/images/banner-3.webp') }}"></div>
+    <section style="padding-top: 50px">
+        <div class="container section--default">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="gallery gallery-responsive portfolio_slider">
+                        <div class=""><img style="border-radius: 5px" src="{{ asset('frontend/images/slider/slider_2.png') }}"></div>
+                        <div class=""><img style="border-radius: 5px" src="{{ asset('frontend/images/slider/slider_3.jpg') }}"></div>
+                        <div class=""><img style="border-radius: 5px" src="{{ asset('frontend/images/slider/slider_4.jpg') }}"></div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding-top: 20px">
+                    <div class="mb-3">
+                        <a href=""><img style="border-radius: 5px" src="{{ asset('frontend/images/slider/slider_4.jpg') }}"></a>
+                    </div>
+                    <div class="">
+                        <a href=""><img style="border-radius: 5px" src="{{ asset('frontend/images/slider/slider_3.jpg') }}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="sale">
+                <img style="border-radius: 5px" src="{{ asset('frontend/images/background/sale_last_week.png') }}" alt="">
             </div>
         </div>
     </section>
     <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"><img style="border-radius: 5px" src="{{ asset('frontend/images/background/qc_1.png') }}" alt=""></div>
+                <div class="col-md-6"><img style="border-radius: 5px" src="{{ asset('frontend/images/background/qc_2.png') }}" alt=""></div>
+            </div>
+        </div>
         @foreach($categories as $category)
             @if(!empty($category->products))
                 @if(empty($category->parent_id))
-                <div class="container section--default mt-5">
-                    <div class="wrap_title mb__30 des_title_2">
+                <div class="container section--default mt-3">
+                    <div class="wrap_title mb__30 des_title_2" style="border-radius: 5px;background: linear-gradient(90deg, #0dd7c5 0%, #044943 50%, #0dd7c5 100%)">
                         <h3 class="sections-title tc pr flex fl_center al_center fs__24 title_2">
-                            <span class="mr__10 ml__10 text-uppercase">{{ $category->name }}</span>
+                            <span class="mr__10 ml__10 text-uppercase" style="color: #FFF">{{ $category->name }}</span>
                         </h3>
                         <span class="dn tt_divider">
                             <span></span>
