@@ -1,4 +1,4 @@
-<section class="service section-bg fill bg-fill bg-loaded">
+<!-- <section class="service section-bg fill bg-fill bg-loaded">
     <div class="container section--default">
         <div class="mt-5 mb-5">
             <h3 class="text-uppercase text-center font-weight-bold" style="color: #FFF">Dịch vụ nỗi bật của chúng tôi</h3>
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <footer id="footer">
     <div class="container section--default pt-5">
         <div class="row">
@@ -142,6 +142,12 @@
 </footer>
 <div class="copyright">
     2021 © Copyright PSOFT. All rights reserved.
+</div>
+<div style="position: fixed;top: 55px;left: 258px;z-index: 1;">
+    <img src="{{ asset('frontend/images/background/qc-left.png') }}" alt="">
+</div>
+<div style="position: fixed;top: 55px;right: 260px;z-index: 1;">
+    <img src="{{ asset('frontend/images/background/qc-left.png') }}" alt="">
 </div>
 <div class="bl-chat">
     <div class="bl-a-chat">

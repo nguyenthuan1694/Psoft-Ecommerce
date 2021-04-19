@@ -7,12 +7,14 @@ use App\Models\Traits\Relationship\ProductRelationship;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 // use Laravel\Scout\Searchable;
+// use Spatie\Searchable\SearchResult;
 
 class Product extends Model
 {
     use ProductRelationship,
         ProductAttribute,
-        SoftDeletes;
+        SoftDeletes
+        ;
 
     protected $guarded = ['id'];
 
@@ -22,7 +24,18 @@ class Product extends Model
 
     public $asYouType = true;
 
-    public function searchableAs()
+    // public function getSearchResult(): SearchResult
+    // {
+    //     return new SearchResult(
+    //         $this,
+    //         $this->id,
+    //         $this->sku,
+    //         $this->name,
+    //         $this->slug
+    //     );
+    // }
+
+    public function searchableAs()  
     {
         return 'products_index';
     }

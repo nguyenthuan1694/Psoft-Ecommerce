@@ -244,8 +244,41 @@ input[type="radio"] {
     font-size: 13px;
 }
 
-.table td, .table th {
-    padding: .75rem;
-    vertical-align: middle;
-    border-top: 1px solid #e9ecef;
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 38px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 38px;
+    font-size: 14px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 38px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px;
+}
+
+.select2-selection:focus {
+    border-color: #80bdff;
+    outline: 0;
+}
+
+.select2-search__field:focus {
+    border-color: #80bdff;
+    outline: 0;
 }

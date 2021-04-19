@@ -1,6 +1,6 @@
 <div class="wrap-cart-icon has-item">
     <a href="{{ route('cart.index') }}" class="cart-icon"><i class="ti-shopping-cart"></i></a>
-    <span id="cart_qty" class="qty-cart"></span>
+    <span id="cart_qty" class="qty-cart">{{ $cart::count() }}</span>
     <a href="{{ route('cart.index') }}">Giỏ hàng</a>
     <div class="wrap-item-view-cart">
         <div id="cart_content">
@@ -23,7 +23,7 @@
             <p>Tạm tính: <span class="float-right"><strong id="cart_total">{{ $cart::total() }}VNĐ</strong></span></p>
             <div class="wrap-btn-event">
                 <a href="{{ route('cart.paymentProduct') }}" class="btn-default">Giỏ hàng</a>
-                <a href="{{ route('cart.getCheckout') }}" class="btn-default">Thanh toán</a>
+                <!-- <a href="{{ route('cart.getCheckout') }}" class="btn-default">Thanh toán</a> -->
             </div>
         </div>
     </div>

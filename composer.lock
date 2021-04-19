@@ -4,8 +4,78 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36fd2ff1b7257a2ab79592619229833c",
+    "content-hash": "f3e63cd935ce99302508e227cf515d17",
     "packages": [
+        {
+            "name": "algolia/algoliasearch-client-php",
+            "version": "2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-client-php.git",
+                "reference": "d9781147ae433f5bdbfd902497d748d60e70d693"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/d9781147ae433f5bdbfd902497d748d60e70d693",
+                "reference": "d9781147ae433f5bdbfd902497d748d60e70d693",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^5.3 || ^7.0 || ^8.0",
+                "psr/http-message": "^1.0",
+                "psr/log": "^1.0",
+                "psr/simple-cache": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "fzaninotto/faker": "^1.8",
+                "julienbourdeau/phpunit": "4.8.37",
+                "symfony/yaml": "^2.0 || ^4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "If you prefer to use Guzzle HTTP client instead of the Http Client implementation provided by the package"
+            },
+            "bin": [
+                "bin/algolia-doctor"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Algolia\\AlgoliaSearch\\": "src/"
+                },
+                "files": [
+                    "src/Http/Psr7/functions.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                }
+            ],
+            "description": "Algolia Search API Client for PHP",
+            "keywords": [
+                "algolia",
+                "api",
+                "client",
+                "php",
+                "search"
+            ],
+            "time": "2021-04-07T16:50:58+00:00"
+        },
         {
             "name": "bumbummen99/shoppingcart",
             "version": "2.10.0",
@@ -783,16 +853,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.20.22",
+            "version": "v6.20.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f4d2beff6f1793909e1db4f2204800183b4f1719"
+                "reference": "d94c07d72c14f07e7d2027458e7f0a76f9ceb0d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f4d2beff6f1793909e1db4f2204800183b4f1719",
-                "reference": "f4d2beff6f1793909e1db4f2204800183b4f1719",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d94c07d72c14f07e7d2027458e7f0a76f9ceb0d9",
+                "reference": "d94c07d72c14f07e7d2027458e7f0a76f9ceb0d9",
                 "shasum": ""
             },
             "require": {
@@ -928,7 +998,72 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2021-03-30T21:33:47+00:00"
+            "time": "2021-04-13T13:49:28+00:00"
+        },
+        {
+            "name": "laravel/scout",
+            "version": "v8.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/scout.git",
+                "reference": "7fb1c860a2fd904f0e084a7cc3641eb1448ba278"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/7fb1c860a2fd904f0e084a7cc3641eb1448ba278",
+                "reference": "7fb1c860a2fd904f0e084a7cc3641eb1448ba278",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "^6.0|^7.0|^8.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "illuminate/http": "^6.0|^7.0|^8.0",
+                "illuminate/pagination": "^6.0|^7.0|^8.0",
+                "illuminate/queue": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0|^9.3"
+            },
+            "suggest": {
+                "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^2.2)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "8.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Scout\\ScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Scout provides a driver based solution to searching your Eloquent models.",
+            "keywords": [
+                "algolia",
+                "laravel",
+                "search"
+            ],
+            "time": "2021-04-06T14:35:41+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -2353,6 +2488,67 @@
                 "uuid"
             ],
             "time": "2020-02-21T04:36:14+00:00"
+        },
+        {
+            "name": "spatie/laravel-searchable",
+            "version": "1.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-searchable.git",
+                "reference": "a246b78d3934016885963a6ac5f6ac63a3ed7655"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-searchable/zipball/a246b78d3934016885963a6ac5f6ac63a3ed7655",
+                "reference": "a246b78d3934016885963a6ac5f6ac63a3ed7655",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0|^7.0|^8.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.0",
+                "orchestra/testbench": "~3.8.0|^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^7.5|^8.0|^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Searchable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pragmatically search through models and other sources",
+            "homepage": "https://github.com/spatie/laravel-searchable",
+            "keywords": [
+                "laravel-searchable",
+                "spatie"
+            ],
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-12-27T21:00:03+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4444,6 +4640,61 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
+            "name": "vanthao03596/laravel-hanhchinhvn",
+            "version": "1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vanthao03596/laravel-hanhchinhvn.git",
+                "reference": "1a2b514dc14f2e4405d201cdfd3cc16e68176aac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vanthao03596/laravel-hanhchinhvn/zipball/1a2b514dc14f2e4405d201cdfd3cc16e68176aac",
+                "reference": "1a2b514dc14f2e4405d201cdfd3cc16e68176aac",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vanthao03596\\HCVN\\HCVNServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vanthao03596\\HCVN\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PhamThao",
+                    "email": "phamthao03596@gmail.com"
+                }
+            ],
+            "description": "hành chính việt nam laravel",
+            "homepage": "https://github.com/vanthao03596/laravel-hanhchinhvn",
+            "keywords": [
+                "hanhchinhvn",
+                "laravel",
+                "vanthao03596"
+            ],
+            "time": "2021-03-29T04:39:18+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v3.6.8",
             "source": {
@@ -4585,16 +4836,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098"
+                "reference": "6bf380035890cb0a09b9628c491ae3866b858522"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/f2b0969f2d9594704be74dbeb25b201570a98098",
-                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/6bf380035890cb0a09b9628c491ae3866b858522",
+                "reference": "6bf380035890cb0a09b9628c491ae3866b858522",
                 "shasum": ""
             },
             "require": {
@@ -4642,7 +4893,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-08T08:50:01+00:00"
+            "time": "2021-04-12T09:30:36+00:00"
         },
         {
             "name": "facade/ignition",

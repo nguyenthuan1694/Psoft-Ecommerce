@@ -1,8 +1,8 @@
 .header-menu {
-    height: 65px;
+    height: 55px;
 }
 .header-menu.fixed {
-	padding-top: 63px;
+	padding-top: 35px;
 }
 .header-menu.fixed .main-menu {
 	position: fixed;
@@ -16,7 +16,7 @@
 }
 
 .header {
-    background-color: #fff;
+    background-color: #044943;
     box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
     position: fixed;
     width: 100%;
@@ -32,15 +32,16 @@
   
   .header li .a-li {
     display: block;
-    padding: 20px 20px;
+    padding: 15px 30px;
     border-right: 1px solid #f4f4f4;
     text-decoration: none;
+    color: #fff;
   }
   
   .header li .a-li:hover,
   .header .menu-btn:hover {
     /* background-color: #f4f4f4; */
-    color: #ff5757;
+    color: #FFF;
   }
   
   .header .logo {
@@ -127,7 +128,7 @@
 }
 
 .sub-ul-menu {
-    background: #fff none repeat scroll 0 0;
+    background: #044943 none repeat scroll 0 0;
     box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.1);
     display: block;
     padding: 20px 0 22px;
@@ -158,6 +159,9 @@
     text-decoration: none;
 }
 
+.has-child a {
+  color: #FFF;
+}
 
 .has-child:hover > .sub-ul-menu {
     transform: rotateX(0deg);
@@ -165,7 +169,7 @@
 }
 ul.sub-ul-menu li:hover > a {
     padding-left: 30px;
-    color: #ff5757;
+    color: #FFF;
 }
 
 .sub-ul-menu li:hover > a::before {
@@ -174,7 +178,7 @@ ul.sub-ul-menu li:hover > a {
 
 @media (min-width: 375px) {
     .sub-ul-menu {
-        background: #fff none repeat scroll 0 0;
+        background: #044943 none repeat scroll 0 0;
         box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.1);
         display: block;
         padding: 20px 0 22px;
@@ -212,7 +216,7 @@ ul.sub-ul-menu li:hover > a {
     }
 
     .sub-ul-menu {
-        background: #fff none repeat scroll 0 0;
+        background: #044943 none repeat scroll 0 0;
         box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.1);
         display: block;
         padding: 20px 0 22px;

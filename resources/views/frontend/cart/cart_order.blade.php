@@ -14,8 +14,9 @@
             <div class="mb-2">
                 <span style="padding: 10px" class="font-weight-bold">Thông tin đơn hàng</span>
             </div>
+            @if(Cart::count() > 0)
             <table class="table" id="order-entry">
-            @foreach(Cart::content() as $product)
+                @foreach(Cart::content() as $product)
                 <tr>
                     <td><img class="img-fluid img-thumbnail" style="width: 100px; height: auto"  src="{{ asset($product->options->img) }}" alt="img"></td>
                     <td>
@@ -24,7 +25,7 @@
                         <input type="hidden" class="productId" value="{{ $product->id }}">
                     </td>
                     <td>
-                        <input type="hidden" class="qq" value="{{ $product->qty }}">
+                        <input type="hidden" class="qty" value="{{ $product->qty }}">
                         <input type="text" min="0" max="5" class="form-calc form-qty item-count form-control" value="{{ $product->qty }}">
                     </td>
                     <td>
@@ -45,7 +46,6 @@
             <hr>
             <span style="padding: 10px;" class="font-weight-bold">Thông tin khách hàng</span>
             <form name="checkout" action="{{ route('cart.postCheckout') }}" method="post">
-                
                 @csrf
                 <div style="padding: 15px 30px">
                     <!-- @if ($errors->any())
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select id="province" name="province_code" class="col-md-4 form-control custom-select @error('province_code') is-invalid @enderror">
+                        <select id="province" name="province_code" class="province col-md-4 form-control custom-select @error('province_code') is-invalid @enderror">
                             <option value="" selected>Tỉnh / Thành phố </option>
                             @foreach($provinces as $province)
                                 <option value="{{ $province->code }}">{{ $province->name_with_type }}</option>
@@ -91,12 +91,18 @@
                     <div class="form-group">
                         <select id="district" name="district_code" class="col-md-4 form-control custom-select @error('district_code') is-invalid @enderror">
                             <option value="" selected>Quận / Huyện</option>
+                            @foreach($districts as $district)
+                                <option value="{{ $district->code }}">{{ $district->name_with_type }}</option>
+                            @endforeach
                         </select>
                         @error('district_code')<small style="color: #dc3545">*Vui lòng chọn Quận / Huyện</small>@enderror
                     </div>
                     <div class="form-group">
                         <select id="ward" name="ward_code" class="col-md-4 form-control custom-select @error('ward_code') is-invalid @enderror">
                             <option value="" selected>Phường / Xã</option>
+                            @foreach($wards as $ward)
+                                <option value="{{ $ward->code }}">{{ $ward->name_with_type }}</option>
+                            @endforeach
                         </select>
                         @error('ward_code')<small style="color: #dc3545">*Vui lòng chọn Phường / Xã</small>@enderror
                     </div>
@@ -168,6 +174,19 @@
                     </div> -->
                 </div>
             </form>
+            @endif
+            @if(Cart::count() == 0)
+            <hr>
+            <div style="padding: 10px 30px">
+                <div class="text-center">Không có sản phẩm nào trong giỏ hàng</div>
+                <div class="text-center">
+                    <a href="/" style="color: #0056b3; text-decoration: none">Quay lại trang chủ</a>
+                </div>
+                <div class="text-center">
+                <small>Khi cần trợ giúp vui lòng gọi 1800.1060 hoặc 028.3622.1060 (7h30 - 22h)</small>
+                </div>
+            </div>
+            @endif
         </div>
     </section>
 @endsection
@@ -182,7 +201,7 @@
             
             var parent = $(this).closest("tr");
             
-            var qty = parent.find(".qq").val();
+            var qty = parent.find(".qty").val();
             var qtyc = parent.find(".form-qty").val();
 
             if(qty > qtyc) {
@@ -332,6 +351,67 @@
           });
         }
 
+        $('#province').change(function () {
+            let selected =  $(this).children("option:selected").val();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('cart.getListDistrict') }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    provinceCode: selected,
+                }
+            }).then(function (res) {
+                let html = '';
+                res.data.forEach(function (e) {
+                    html += `<option value="${e.code}">${e.name_with_type}</option>`;
+                });
+                $('#district').html(html);
+                $('#district').trigger('change');
+            })
+        });
+
+        $('#district').change(function () {
+            let selected =  $(this).children("option:selected").val();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('cart.getListWard') }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    districtCode: selected,
+                }
+            }).then(function (res) {
+                let html = '';
+                res.data.forEach(function (e) {
+                    html += `<option value="${e.code}">${e.name_with_type}</option>`;
+                });
+                $('#ward').html(html);
+                $('#ward').trigger('change');
+            })
+        });
+        $('#ward').change(function () {
+            getAddressString();
+            let province_code = $('#province').children("option:selected").val();
+            let district_code = $('#district').children("option:selected").val();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('cart.updateShipping') }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    province_code: province_code,
+                    district_code: district_code
+                }
+            }).then(function (res) {
+                let tax = `${res.data.tax} VNĐ`;
+                let total = `${res.data.total} VNĐ`;
+                $('p.tax > span').text(tax);
+                $('p.total > span').text(total);
+            });
+        });
+
+        $("#province").select2({});
+        $("#district").select2({});
+        $("#ward").select2({});
+        
         $('button[name="btnCheckout"]').click(function () {
             $('form[name="checkout"]').submit();
         });

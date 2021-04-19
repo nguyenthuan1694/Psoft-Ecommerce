@@ -15,7 +15,7 @@ use App\Models\Ward;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Vanthao03596\HCVN\Models\City;
+// use Vanthao03596\HCVN\Models\City;
 
 class CartController extends Controller
 {
@@ -41,10 +41,14 @@ class CartController extends Controller
                 'product' => $product,
             ]);
     }
+    
 
     public function paymentProduct(Request $request)
     {
         $provinces = Province::orderBy('name')->get();
+        $districts = District::where('parent_code', '01')->orderBy('name')->get();
+        $wards = Ward::where('parent_code', '01')->orderBy('name')->get();
+
         $product = Product::where('slug',$request->slug)->first();
         $categories = Category::root()->get();
         $coupon = session()->get('coupon')['name'];
@@ -58,6 +62,8 @@ class CartController extends Controller
             'newSubtotal' => $newSubtotal,
             'product' => $product,
             'provinces' => $provinces,
+            'districts' => $districts,
+            'wards' => $wards,
         ]);
     }
 
@@ -196,7 +202,7 @@ class CartController extends Controller
 
         $ward = Ward::where('code', $request->ward_code)->first()->name_with_type;
         $district = District::where('code', $request->district_code)->first()->name_with_type;
-        $province = City::where('code', $request->province_code)->first()->name_with_type;
+        $province = Province::where('code', $request->province_code)->first()->name_with_type;
         $address = "{$request->house_number}, {$ward}, {$district}, {$province}";
 
         $order = Order::create([

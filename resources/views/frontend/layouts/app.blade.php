@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/themify-icons/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/vrsg.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     @yield('css')
 </head>
 <body>
@@ -27,8 +28,8 @@
 
     @include('frontend.layouts.footer')
     <div class="backtotop"><i class="ti-angle-double-up"></i></div>
-
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/slick.js') }}"></script>

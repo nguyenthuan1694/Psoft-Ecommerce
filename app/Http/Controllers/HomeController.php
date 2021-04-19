@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\URL;
 use App\Repositories\Comment\CommentRepository;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Product\ProductRepository;
+use Spatie\Searchable\Search;
+use Spatie\Searchable\ModelSearchAspect;
 
 class HomeController extends Controller
 {
@@ -113,6 +115,17 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->get('query');
+        // $products = (new Search())
+        //     ->registerModel(\App\Models\Product::class, ['id','sku','name','slug'])
+        //     ->perform($keyword);
+        // return view('frontend.search', compact('products', 'keyword'));
+        // return view('frontend.search')
+        //     ->with('products', $products)
+        //     ->with('keyword', $keyword)
+        // ;
+
+        
+        
         $products = Product::search($keyword)->paginate(config('common.pagination.frontend'));
         return view('frontend.search')
                 ->with('products', $products)
