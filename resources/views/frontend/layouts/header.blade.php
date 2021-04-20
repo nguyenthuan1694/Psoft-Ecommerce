@@ -19,9 +19,8 @@
                             @include('frontend.includes.categories_top_menu', ['categories' => $categories])
                         </ul>
                     </li>
-                    <li class="menu-li"><a class="a-li" href="#work">Giới thiệu</a></li>
-                    <li class="menu-li"><a class="a-li" href="#about">Tin tức và sự kiện</a></li>
-                    <li class="menu-li"><a class="a-li" href="#careers">Liên hệ</a></li>
+                    <li class="menu-li"><a class="a-li" href="#about">Tin công nghệ</a></li>
+                    <li class="menu-li"><a class="a-li" href="#contacts">Hotline: 1800.6018 (miễn phí)</a></li>
                 </ul>
             </div>
             <div style="position: absolute;top: 8px;left: 45%;display: block;cursor: pointer;" class="search">

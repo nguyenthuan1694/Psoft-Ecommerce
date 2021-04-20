@@ -97,7 +97,7 @@
     <script src="{{ asset('backend/vendors/echarts/dist/echarts-en.min.js') }}"></script>
 
     <!-- Sparkline JavaScript -->
-    <script src="{{ asset('backend/vendors/jquery.sparkline/dist/jquery.sparkline.min.js') }}"></script>
+    <!-- <script src="{{ asset('backend/vendors/jquery.sparkline/dist/jquery.sparkline.min.js') }}"></script> -->
 
     <!-- Vector Maps JavaScript -->
     <script src="{{ asset('backend/vendors/vectormap/jquery-jvectormap-2.0.3.min.js') }}"></script>

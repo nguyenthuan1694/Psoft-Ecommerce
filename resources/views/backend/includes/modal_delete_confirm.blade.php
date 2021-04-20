@@ -62,6 +62,13 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 @endif
+                @if($type == 'orders')
+                    <form action="{{ route('orders.forceDelete', ['id' => $item->id]) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

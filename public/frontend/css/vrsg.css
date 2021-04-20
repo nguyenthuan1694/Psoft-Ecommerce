@@ -637,8 +637,9 @@ h3 {
 }
 
 footer {
-    background-color: #f7f7f7;
-    color: #666666;
+    background:linear-gradient(90deg, #298179 0%, #044943 50%, #298179 100%);
+    color: #fff;
+    height: 500px;
 }
 
 /*.footer ul>li a {
@@ -667,11 +668,11 @@ footer {
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 20px;
-    color: #222222;
+    color: #fff;
 }
 
 .footer__contract ul>li>a {
-    color: #666666;
+    color: #fff;
     line-height: 35px;
     text-decoration: none;
 }
@@ -699,7 +700,7 @@ footer {
 .footer-social__title {
     font-weight: 600;
     margin-bottom: 20px;
-    color: #222222;
+    color: #fff;
 }
 
 .blog-item-social>li {
@@ -707,12 +708,12 @@ footer {
     margin-right: 15px;
 }
 .blog-item-social>li>a:hover svg {
-    color: #07776d;
+    color: #0dd1c0;
     border-radius: 6px;
 }
 
 .blog-item-social>li>a {
-    color: #044943;
+    color: #fff;
 }
 
 .line {
@@ -758,14 +759,13 @@ footer {
 
 .copyright {
     position: relative;
-    top: -30px;
     text-align: center;
-    color: #222222;
-    background: #f2f2f2;
+    color: #fff;
+    background: #044943;
     padding: 5px;
 }
 .backtotop {
-    background: #242424 none repeat scroll 0 0;
+    background: #044943 none repeat scroll 0 0;
     bottom: 85px;
     color: #ffffff;
     cursor: pointer;
@@ -783,7 +783,7 @@ footer {
     border-radius: 3px;
 }
 .backtotop:hover {
-    background: #fa8231 none repeat scroll 0 0;
+    background: #267d75 none repeat scroll 0 0;
 }
 .backtotop.active {
 	display: flex;
@@ -860,7 +860,7 @@ footer {
 	font-style: italic;
 }
 .breadcrumb {
-    padding: 0;
+    padding: 0 15px;
     margin: 0 -15px;
     background: transparent;
 }

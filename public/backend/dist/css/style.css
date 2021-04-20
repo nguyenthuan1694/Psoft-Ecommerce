@@ -22096,6 +22096,7 @@ div.mce-menu .mce-menu-item-sep,
 .table.table-bordered td {
     border-color: #eaecec;
     border-top: none;
+    font-size: 14px;
 }
 .table.table-bordered th {
     border-top: 1px solid #eaecec;

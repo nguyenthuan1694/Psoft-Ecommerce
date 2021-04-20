@@ -39,8 +39,6 @@ img {
 
 .category--list__left {
 	width: 250px;
-	margin-right: 30px;
-	padding: 0;
 }
 
 .category--list__title {
@@ -163,7 +161,7 @@ img {
     width: 100%;
     transition: all 0.2s ease-in-out;
     border-radius: 6px;
-    height: 150px;
+    height: auto;
 }
 
 .category--list__product-content {
@@ -185,7 +183,7 @@ img {
 
 
 .category--list__text {
-    padding-top: 90%;
+    padding-top: 100%;
     font-size: 14px;
 }
 

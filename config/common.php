@@ -91,9 +91,10 @@ return [
             'standard' => 1
         ],
         'status' => [
-            'not_sent' => 1,
+            'are_checking' => 1,
             'sending' => 2,
-            'done' => 3
+            'done' => 3,
+            'not_sent' => 4,
         ],
     ],
     'payment' => [
@@ -102,9 +103,9 @@ return [
         ],
         'status' => [
             'unpaid' => 1,
-            'partial' => 2,
-            'paid' => 3,
-            'return' => 4,
+            // 'partial' => 2,
+            'paid' => 2,
+            'return' => 3,
         ],
     ],
     'comment_admin' => [

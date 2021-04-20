@@ -105,6 +105,24 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#order_drp">
+                        <i class="icon" data-icon="+"></i>
+                        <span class="nav-link-text ml-5">Orders</span>
+                    </a>
+                    <ul id="order_drp" class="nav flex-column collapse collapse-level-1">
+                        <li class="nav-item">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('orders.index') }}">Listing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('order.trashed') }}">Trashed</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

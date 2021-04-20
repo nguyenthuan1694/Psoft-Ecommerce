@@ -31,4 +31,12 @@ trait ProductRelationship
     // {
     //     return $this->hasMany('App\Models\ProductPromotion', 'product_id', 'id');
     // }
+
+    /**
+     * Get the order_detail that owns the comment.
+     */
+    public function order_detail()
+    {
+        return $this->hasMany('App\Models\OrderDetail');
+    }
 }

@@ -421,41 +421,40 @@
         }
         // 
         function addCommentBox(id, phone) {
-        // Check if comment box is already exist
-        var targetDiv = document.getElementById('i-comment-' + id).getElementsByClassName("comment-temp")[0];
+            // Check if comment box is already exist
+            var targetDiv = document.getElementById('i-comment-' + id).getElementsByClassName("comment-temp")[0];
 
-        if(targetDiv != undefined) {
-        return;
-        }
+            if(targetDiv != undefined) {
+            return;
+            }
 
-        // Check if comment is already exist at other comments
-        targetDiv = document.getElementsByClassName('comment-temp')[0];
-        if(targetDiv != undefined) {
-        targetDiv.remove();
-        }
+            // Check if comment is already exist at other comments
+            targetDiv = document.getElementsByClassName('comment-temp')[0];
+            if(targetDiv != undefined) {
+            targetDiv.remove();
+            }
 
-        // HTML comment box 
-        var newNotificationHtml = `
-            <div class="input-group w-auto flex-nowrap ml-4 ml-md-5 mt-4 comment-temp">
-                <div class="input-group-prepend mr-2">
-                <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
-                </div>
-                <div class="w-100">
-                    <div class="form-group tinymce-wrap mt-3">
-                        <textarea id="i-comment-temp" placeholder="Hãy đặt câu hỏi, chúng tôi sẽ tư vấn giúp bạn..." name="description_sub" class="tinymce" rows="3"></textarea>
+            // HTML comment box 
+            var newNotificationHtml = `
+                <div class="input-group w-auto flex-nowrap ml-4 ml-md-5 mt-4 comment-temp">
+                    <div class="input-group-prepend mr-2">
+                    <img src="{{ asset('frontend/images/avatars/default.png') }}" class="img-fluid avatar-img mr-2" alt="Responsive image">
                     </div>
-                </div>           
-            </div>
-            <div class="text-right mt-2 mb-4">
-                    <a href="#" class="text09 btn btn-km bg-color-white color-pink" onclick="saveComment(`+id+`,`+phone+`)" >Gửi phản hồi</a>
-            </div>
-            `;
+                    <div class="w-100">
+                        <div class="form-group tinymce-wrap mt-3">
+                            <textarea id="i-comment-temp" placeholder="Hãy đặt câu hỏi, chúng tôi sẽ tư vấn giúp bạn..." name="description_sub" class="tinymce" rows="3"></textarea>
+                        </div>
+                    </div>           
+                </div>
+                <div class="text-right mt-2 mb-4">
+                        <a href="#" class="text09 btn btn-km bg-color-white color-pink" onclick="saveComment(`+id+`,`+phone+`)" >Gửi phản hồi</a>
+                </div>
+                `;
 
-        // Add
-        $('#i-comment-' + id).append(newNotificationHtml);
-        document.getElementById('i-comment-temp').focus();
-        
-    }
+            // Add
+            $('#i-comment-' + id).append(newNotificationHtml);
+            document.getElementById('i-comment-temp').focus();
+        }
 
     // add order
     function addToCart(id, qty) {

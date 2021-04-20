@@ -6,9 +6,30 @@ use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Repositories\Order\OrderRepository;
+use App\Repositories\OrderDetail\OrderDetailRepository;
 
 class OrderController extends Controller
 {
+    /**
+     * @var OrderRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $orderRepository;
+
+    /**
+     * @var OrderDetailRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $orderDetailRepository;
+
+    public function __construct(
+        OrderRepository $orderRepository, 
+        OrderDetailRepository $orderDetailRepository
+    )
+    {
+        $this->orderRepository = $orderRepository;
+        $this->orderDetailRepository = $orderDetailRepository;
+    }
+
     /**
      * Display a listing of orders.
      *
@@ -16,7 +37,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(config('common.paginate.backend'));
+        $orders = $this->orderRepository->getOrderWidthPagination();
         return view('backend.order.index')->with('orders', $orders);
     }
 
@@ -49,7 +70,26 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Request  $request orderId
+     * @return \Illuminate\Http\Response
+     */
+    public function showOrderDetail(Request $request)
+    {
+        // get orderDetail by orderId
+        $orderDetials = $this->orderDetailRepository->getOrderDetailByOrderId($request->id);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Add success',
+            'data' => [
+                'orderDetail' => $orderDetials,
+            ],
+        ]);
     }
 
     /**
@@ -96,13 +136,56 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Move the order to trash.
      *
      * @param Order $order
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Order $order)
     {
-        //
+        $orders = Order::where('id',$order['id'])->first()->delete();
+        return redirect()->back()->with('success', 'You have successfully move the product to trashed');
+    }
+
+    /**
+     * Display a listing of the trashed products.
+     *
+     * @return View
+     */
+    public function trashed()
+    {
+        $orders = Order::onlyTrashed()->paginate(config('common.backend.pagination'));
+        return view('backend.order.trashed')->with('orders', $orders);
+    }
+
+    /**
+     * Restored a trashed product.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function restore(Request $request, $id)
+    {
+        $orders = Order::onlyTrashed()->where('id', $id)->first();
+        $orders->restore();
+        return redirect()->back()->with('success', 'You have successfully restored the order');
+    }
+
+    /**
+     * Force delete a trashed product.
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function forceDelete($id)
+    {
+        $orders = Order::onlyTrashed()->where('id', $id)->first();
+        foreach ($orders->order_details as $items) {
+            $items->forceDelete();
+        }
+        $orders->forceDelete();
+        return redirect()->back()->with('success', 'You have successfully deleted the product');
     }
 }

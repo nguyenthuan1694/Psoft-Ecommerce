@@ -46,6 +46,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productRepository->getProductWidthPagination();
+        // dd($products);
         return view('backend.product.index')->with('products', $products);
     }
 

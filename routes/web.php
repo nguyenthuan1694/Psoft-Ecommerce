@@ -77,6 +77,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::put('/comments/{id}/restore', 'CommentController@restore')->name('comments.restore');
     Route::delete('/comments/{id}/forceDelete', 'CommentController@forceDelete')->name('comments.forceDelete');
 
+    // Order
+    Route::resource('orders', 'OrderController');
+    Route::post('/order', 'OrderController@showOrderDetail')->name('orders.showOrderDetail');
+    Route::get('/order/trashed', 'OrderController@trashed')->name('order.trashed');
+    Route::put('/orders/{id}/restore', 'OrderController@restore')->name('orders.restore');
+    Route::delete('/orders/{id}/forceDelete', 'OrderController@forceDelete')->name('orders.forceDelete');
+
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
