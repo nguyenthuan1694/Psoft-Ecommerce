@@ -80,6 +80,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Order
     Route::resource('orders', 'OrderController');
     Route::post('/order', 'OrderController@showOrderDetail')->name('orders.showOrderDetail');
+    Route::post('/orders/update-shipping', 'OrderController@updateShipping')->name('orders.updateShipping');
+    Route::post('/orders/update-payment', 'OrderController@updatePayment')->name('orders.updatePayment');
     Route::get('/order/trashed', 'OrderController@trashed')->name('order.trashed');
     Route::put('/orders/{id}/restore', 'OrderController@restore')->name('orders.restore');
     Route::delete('/orders/{id}/forceDelete', 'OrderController@forceDelete')->name('orders.forceDelete');

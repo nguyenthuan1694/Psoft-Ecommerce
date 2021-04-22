@@ -188,4 +188,25 @@ class OrderController extends Controller
         $orders->forceDelete();
         return redirect()->back()->with('success', 'You have successfully deleted the product');
     }
+
+    // update status shipping
+    public function updateShipping(Request $request)
+    {
+        $result = $this->orderRepository->update($request->id, $request->all());
+        if ($result) {
+            return response()->json(['success' => true, 'msg' => "Update {$request['name']} successfully!"], 200);
+        }
+        return response()->json(['success' => false], 400);
+        
+    }
+    
+    // update status payment
+    public function updatePayment(Request $request)
+    {
+        $result = $this->orderRepository->update($request->id, $request->all());
+        if ($result) {
+            return response()->json(['success' => true, 'msg' => "Update {$request['name']} successfully!"], 200);
+        }
+        return response()->json(['success' => false], 400);
+    }
 }

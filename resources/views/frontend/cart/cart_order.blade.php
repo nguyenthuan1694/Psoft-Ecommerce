@@ -62,7 +62,7 @@
                         <div class="col-md-6">
                             <label for="email" style="font-size: 14px">Email</label>
                             <input style="font-size: 14px" id="email" name="email" type="text" placeholder="Vui lòng nhập email" class="form-control  @error('email') is-invalid @enderror">
-                            @error('email')<small class="form-text text-muted">*Vui lòng nhập email</small>@enderror
+                            @error('email')<small style="color: #dc3545">*Vui lòng nhập email</small>@enderror
                         </div>
                     </div>
                     <div class="form-group row">

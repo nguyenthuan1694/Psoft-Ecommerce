@@ -22,7 +22,8 @@ trait OrderAttribute
 
     public function getShippingStatusTextAttribute()
     {
-        switch ($this->status) {
+        switch ($this->shipping_status) {
+           
             case config('common.shipping.status.are_checking'):
                 return '<span class="badge badge-info">Đang kiểm tra hàng</span>';
             case config('common.shipping.status.sending'):
@@ -36,7 +37,7 @@ trait OrderAttribute
 
     public function getPaymentStatusTextAttribute()
     {
-        switch ($this->status) {
+        switch ($this->payment_status) {
             case config('common.payment.status.unpaid'):
                 return '<span class="badge badge-warning">Chưa thanh toán</span>';
             case config('common.payment.status.paid'):
