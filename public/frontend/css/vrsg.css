@@ -639,7 +639,7 @@ h3 {
 footer {
     background:linear-gradient(90deg, #298179 0%, #044943 50%, #298179 100%);
     color: #fff;
-    height: 500px;
+    height: 450px;
 }
 
 /*.footer ul>li a {
@@ -678,7 +678,7 @@ footer {
 }
 
 .footer__contract-content li>a:hover {
-    color: #07776d;
+    color: #fff;
 }
 
 .footer__contract-content li>a:hover:after { 
@@ -692,7 +692,7 @@ footer {
     height: 1px;
     left: 50%;
     /* position: absolute; */
-    background: #07776d;
+    background: #fff;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
   }

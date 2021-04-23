@@ -60,9 +60,10 @@
                                 Về chúng tôi
                             </div>
                             <ul class="footer__contract-content" style="font-size: 14px">
-                                <li><a href="#">Giới thiệu</a></li>
-                                <li><a href="#">Tin tức và sự kiện</a></li>
-                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="{{ route('news') }}">Tin công nghệ</a></li>
+                                <li><a href="#">Chính sách bảo hành</a></li>
+                                <li><a href="#">Chính sách đổi trả</a></li>
+                                <li><a href="#">Chính sách sử dụng</a></li>
                                 <li><a href="#">Chính sách bảo mật</a></li>
                             </ul>
                         </div>
@@ -73,23 +74,30 @@
                                     Dịch vụ của PSoft
                                 </div>
                                 <ul class="footer__contract-content" style="font-size: 14px">
-                                    <li><a href="#">Gửi BDS miễn phí</a></li>
-                                    <li><a href="#">Thông tin huy hoạch</a></li>
-                                    <li><a href="#">Thẩm định giá BDS</a></li>
-                                    <li><a href="#">Thủ tục vay mua nhà</a></li>
+                                    <li><a href="#">Mua hàng trả góp</a></li>
+                                    <li><a href="#">Phụ kiện chính hãng</a></li>
+                                    <li><a href="#">Trade-in thu cũ lên đời</a></li>
                                 </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="footer__contract">
                             <div class="widget-title text-uppercase">
-                                hệ thống của PSoft
+                                Hotline
                             </div>
                             <ul class="footer__contract-content" style="font-size: 14px">
-                                <li><a href="#">Mua nhà</a></li>
-                                <li><a href="#">Bán nhà</a></li>
-                                <li><a href="#">thuê nhà</a></li>
-                                <li><a href="#">Cộng đồng môi giới Psoft</a></li>
+                                <li>
+                                    <a href="#">
+                                        Gọi tư vấn máy - phụ kiện
+                                        1800.6018 (08:30 – 21:30)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Bảo hành - Hỗ trợ kỹ thuật
+                                        1900.2057 (09:00 – 21:00)
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
