@@ -160,7 +160,7 @@ body{
 }
 
 .introduce_img img {
-    border: 2px solid #f48120; 
+    border: 2px solid #044943; 
     padding: 5px;
     width: 100%;
     height: 210px;
@@ -176,9 +176,13 @@ body{
 }
 
 .introduce-text:hover p {
-    color: #f48120;
+    color: #044943;
     cursor: pointer;
     transition: all 0.3s ease-out;
+}
+
+.introduce-text a {
+    text-decoration: none;
 }
 
 .register__product {
@@ -224,7 +228,7 @@ body{
 /* BẤT ĐỘNG SẢN NỔI BẬT */
 .introduce-product__title {
 	font-size: 16px;
-    background: #f48120;
+    background: linear-gradient(90deg, #298179 0%, #044943 50%, #298179 100%);
     color: #fff;
     padding: 10px;
     text-transform: uppercase;
@@ -236,7 +240,7 @@ body{
     margin-bottom: 10px;
     position: relative;
     padding: 0px 0px 10px;
-    border-bottom: 1px solid #f48120;
+    border-bottom: 1px solid #044943;
 }
 
 .introduce-product__img {
@@ -246,6 +250,14 @@ body{
 .introduce-product__content {
     padding-left: 0;
     font-size: 13px;
+}
+
+.introduce-product__content a {
+    text-decoration: none;
+}
+
+.introduce-product__content:hover a {
+    color: #044943
 }
 
 .introduce-product__text {
@@ -262,14 +274,21 @@ body{
     -webkit-box-orient: vertical;
 }
 
+.introduce-text__short_description_product {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
 .product-img__same {
-    border: 1px solid #f48120;
+    border: 1px solid #044943;
     padding: 3px;
 }
 
 .product-img__same img {
     width: 100%;
-    height: 60px;
+    height: auto;
 }
 
 .product-bage {
@@ -290,7 +309,7 @@ body{
 }
 
 .product-badge__inner {
-    color: #f48120;
+    color: #044943;
     display: table-cell;
     vertical-align: middle;
     text-align: center;

@@ -99,8 +99,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comments = Comment::where('id',$comment['id'])->first()->delete();
-
+        $this->commentRepository->deleteCommentById($comment['id']);
         return redirect()->back()->with('success', 'You have successfully move the comment to trashed');
     }
 
@@ -111,7 +110,7 @@ class CommentController extends Controller
      */
     public function trashed()
     {
-        $comments = Comment::onlyTrashed()->paginate(config('common.backend.pagination'));
+        $comments = $this->commentRepository->trashedComment();
         return view('backend.comment.trashed')->with('comments', $comments);
     }
 
@@ -124,7 +123,7 @@ class CommentController extends Controller
      */
     public function restore(Request $request, $id)
     {
-        $comments = Comment::onlyTrashed()->where('id', $id)->first();
+        $comments = $this->commentRepository->restoreCommentById($id);
         $comments->restore();
         return redirect()->back()->with('success', 'You have successfully restored the comment');
     }
@@ -137,7 +136,7 @@ class CommentController extends Controller
      */
     public function forceDelete($id)
     {
-        $comments = Comment::onlyTrashed()->where('id', $id)->first();
+        $comments = $this->commentRepository->forceDeleteComment($id);
         $comments->forceDelete();
         return redirect()->back()->with('success', 'You have successfully deleted the comment');
     }

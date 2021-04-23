@@ -16,9 +16,56 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 // use Vanthao03596\HCVN\Models\City;
+use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Product\ProductRepository;
+use App\Repositories\Province\ProvinceRepository;
+use App\Repositories\District\DistrictRepository;
+use App\Repositories\Ward\WardRepository;
+
 
 class CartController extends Controller
 {
+    /**
+     * @var CategoryRepositoryInterface|\App\Repositories\Repository
+    */
+
+    protected $categoryRepository;
+
+    /**
+     * @var ProductRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $productRepository;
+
+    /**
+     * @var ProvinceRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $districtRepository;
+
+    /**
+     * @var DistrictRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $wardRepository;
+
+    /**
+     * @var WardRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $provinceRepository;
+
+    public function __construct(
+        CategoryRepository $categoryRepository,
+        ProductRepository $productRepository,
+        ProvinceRepository $provinceRepository,
+        DistrictRepository $districtRepository,
+        WardRepository $wardRepository
+    )
+    {
+        $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
+        $this->provinceRepository = $provinceRepository;
+        $this->districtRepository = $districtRepository;
+        $this->wardRepository = $wardRepository;
+    }
+
     /**
      * Show the cart
      *
@@ -26,8 +73,8 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-        $product = Product::where('id',$request->product_id)->first();
-        $categories = Category::root()->get();
+        $product = $this->productRepository->getProuctById($request->product_id);
+        $product = $this->categoryRepository->getCategory();
         $coupon = session()->get('coupon')['name'];
         $discount = number_format(session()->get('coupon')['discount'], 0) ?? 0;
         $newSubtotal = number_format(round((float) str_replace(',', '', Cart::subtotal()) - str_replace(',', '', $discount)), 0);
@@ -45,12 +92,12 @@ class CartController extends Controller
 
     public function paymentProduct(Request $request)
     {
-        $provinces = Province::orderBy('name')->get();
-        $districts = District::where('parent_code', '01')->orderBy('name')->get();
-        $wards = Ward::where('parent_code', '01')->orderBy('name')->get();
+        $provinces = $this->provinceRepository->getProvinceOrderByName();
+        $districts = $this->districtRepository->getDistrictById();
+        $wards = $this->wardRepository->getWardById();
 
-        $product = Product::where('slug',$request->slug)->first();
-        $categories = Category::root()->get();
+        // $product = $this->productRepository->getProductBySlug($request->slug);
+        $categories = $this->categoryRepository->getCategory();
         $coupon = session()->get('coupon')['name'];
         $discount = number_format(session()->get('coupon')['discount'], 0) ?? 0;
         $newSubtotal = number_format(round((float) str_replace(',', '', Cart::subtotal()) - str_replace(',', '', $discount)), 0);
@@ -60,7 +107,7 @@ class CartController extends Controller
             'coupon' => $coupon,
             'discount' => $discount,
             'newSubtotal' => $newSubtotal,
-            'product' => $product,
+            // 'product' => $product,
             'provinces' => $provinces,
             'districts' => $districts,
             'wards' => $wards,
@@ -70,7 +117,7 @@ class CartController extends Controller
 
     public function payment(Request $request)
     {
-        $product = Product::where('id',$request->product_id)->first();
+        $product = $this->productRepository->getProuctById($request->product_id);
         return view('frontend.payment')
                 ->with('product', $product)
         ;
@@ -86,7 +133,7 @@ class CartController extends Controller
     {
         $productId = $request->get('product_id');
         $qty = $request->get('qty') ?? 1;
-        $product = Product::find($productId);
+        $product = $this->productRepository->findProductById($productId);
         Cart::add([
             'id' => $productId,
             'name' => $product->name,
@@ -200,9 +247,11 @@ class CartController extends Controller
         $courier = Courier::where('province_code', $request->province_code)->where('district_code', $request->district_code)->first();
         $shipping = $courier->amount ?? config('common.shipping.default_fee');
 
-        $ward = Ward::where('code', $request->ward_code)->first()->name_with_type;
-        $district = District::where('code', $request->district_code)->first()->name_with_type;
-        $province = Province::where('code', $request->province_code)->first()->name_with_type;
+        // $provinces = $this->provinceRepository->getProvinceOrderByName();
+        // $districts = $this->districtRepository->getDistrictById();
+        $wards = $this->wardRepository->getWardByCode($request->ward_code);
+        $district = $this->districtRepository->getDistrictByCode($request->district_code);
+        $province = $this->provinceRepository->getProvinceByCode($request->province_code);
         $address = "{$request->house_number}, {$ward}, {$district}, {$province}";
 
         $order = Order::create([

@@ -700,15 +700,8 @@ img {
     text-decoration: none;
 }
 
-/* .box-tocart .btn-go-cart, .product-options-bottom .product-add-form .btn-go-cart {
-    height: 65px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    padding: 0 !important;
-} */
-
 .actions:hover #product-addtocart-button {
-    background:linear-gradient(90deg, #11c56b 0%, #b11374 50%, #360609 100%)
+    background:linear-gradient(90deg, #298179 0%, #044943 50%, #298179 100%)
 }
 
 .box-tocart .btn-go-cart span {

@@ -6,7 +6,6 @@ use App\Models\Product;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
-    //lấy model tương ứng
     public function getModel()
     {
         return Product::class;
@@ -25,5 +24,15 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function getProductOtherSlug($slug)
     {
         return $this->model->where('slug', '<>', $slug)->get();
+    }
+
+    public function getProuctById($id)
+    {
+        return $this->model->where('id',$id)->first();
+    }
+
+    public function findProductById($id)
+    {
+        return $this->model->find($id);
     }
 }

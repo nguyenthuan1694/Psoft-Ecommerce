@@ -143,12 +143,12 @@
 <div class="copyright">
     2021 © Copyright PSOFT. All rights reserved.
 </div>
-<div style="position: fixed;top: 55px;left: 258px;z-index: 1;">
+<!-- <div style="position: fixed;top: 55px;left: 258px;z-index: 1;">
     <img src="{{ asset('frontend/images/background/qc-left.png') }}" alt="">
 </div>
 <div style="position: fixed;top: 55px;right: 260px;z-index: 1;">
     <img src="{{ asset('frontend/images/background/qc-left.png') }}" alt="">
-</div>
+</div> -->
 <div class="bl-chat">
     <div class="bl-a-chat">
         <div class="phonering-alo-phone phonering-alo-green phonering-alo-show" id="phonering-alo-phoneIcon">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Comment;
+use App\Models\News;
 use App\Http\Requests\CommentStoreRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\URL;
 use App\Repositories\Comment\CommentRepository;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Product\ProductRepository;
+use App\Repositories\News\NewsRepository;
 use Spatie\Searchable\Search;
 use Spatie\Searchable\ModelSearchAspect;
 
@@ -20,25 +22,35 @@ class HomeController extends Controller
     /**
      * @var CategoryRepositoryInterface|\App\Repositories\Repository
     */
+
     protected $categoryRepository;
     /**
      * @var CommentRepositoryInterface|\App\Repositories\Repository
     */
+
     protected $commentRepository;
     /**
      * @var ProductRepositoryInterface|\App\Repositories\Repository
     */
     protected $productRepository;
 
+    /**
+     * @var NewsRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $newsRepository;
+    
+
     public function __construct(
         CategoryRepository $categoryRepository,
         CommentRepository $commentRepository,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        NewsRepository $newsRepository
     )
     {
         $this->categoryRepository = $categoryRepository;
         $this->commentRepository = $commentRepository;
         $this->productRepository = $productRepository;
+        $this->newsRepository = $newsRepository;
     }
 
 
@@ -64,7 +76,7 @@ class HomeController extends Controller
      */
     public function showCategory(Request $request, $slug)
     {
-        $resultData = $this->categoryRepository->getCategory($slug);
+        $resultData = $this->categoryRepository->getCategoryBySlug($slug);
         $category = $resultData[0];
         $products = $resultData[1];
         return view('frontend.category')
@@ -93,7 +105,6 @@ class HomeController extends Controller
             "Kết nối" => $product->connect,
             "Thông tin pin - Sạc" => $product->charging,
         ];
-        // dd($specifications);
         $products = $this->productRepository->getProductOtherSlug($slug);
         $comments = $this->commentRepository->getCommentWithProductSubcomment($product->id);
         $commentsTotal = $comments->count();
@@ -148,5 +159,32 @@ class HomeController extends Controller
     {
         $this->commentRepository->create($request->all());
         return redirect()->route('product', [$request->slug])->with('success', 'You have successfully created a new product');
+    }
+
+
+    public function showNewsIndex()
+    {
+        $news = $this->newsRepository->getNewsWidthPagination();
+        $products = $this->productRepository->getProductWidthPagination();
+        return view('frontend.news.index')
+                ->with('products', $products)
+                ->with('news', $news);
+    }
+
+    /**
+     * Search news
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showNews(Request $request, $slug) 
+    {
+        $news = $this->newsRepository->getNewsBySlug($slug);
+        $newsData = $this->newsRepository->getNewsOtherSlug($slug);
+        $products = $this->productRepository->getProductWidthPagination();
+        return view('frontend.news.news')
+                ->with('news', $news)
+                ->with('newsData', $newsData)
+                ->with('products', $products);
     }
 }

@@ -19,7 +19,7 @@
                             @include('frontend.includes.categories_top_menu', ['categories' => $categories])
                         </ul>
                     </li>
-                    <li class="menu-li"><a class="a-li" href="#about">Tin công nghệ</a></li>
+                    <li class="menu-li"><a class="a-li" href="{{ route('news') }}">Tin công nghệ</a></li>
                     <li class="menu-li"><a class="a-li" href="#contacts">Hotline: 1800.6018 (miễn phí)</a></li>
                 </ul>
             </div>

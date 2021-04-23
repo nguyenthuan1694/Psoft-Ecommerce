@@ -12,10 +12,15 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return Category::class;
     }
 
-    public function getCategory($slug)
+    public function getCategoryBySlug($slug)
     {
         $category =  $this->model->with('parent')->where('slug', '=', $slug)->first();
         $products = $category->products()->paginate(config('common.pagination.frontend'));
         return [$category, $products];
+    }
+
+    public function getCategory()
+    {
+        return $this->model->root()->get();
     }
 }

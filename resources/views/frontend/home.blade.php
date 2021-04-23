@@ -67,16 +67,16 @@
                                         </div>
                                         <div class="home--product__description">
                                             <p class="home--product__location">
-                                                <strong>Giá:</strong>
+                                                <strong>{!! trans('home.price') !!}</strong>
                                                 <span class="mr-2">{{ number_format($product->price) }}đ</span>
                                                 @if($product->cost)
                                                     <del>{{ number_format($product->cost) }}đ</del>
                                                 @endif
                                             </p>
-                                            <p class="" style="font-size: 13px">[Hot] thu cũ lên đời giá cao - thủ tục nhanh - trợ giá lên tới 1 triệu</p>
-                                            <small class="btn btn-bh">Bảo hành 12 tháng</small>
+                                            <p style="font-size: 13px">{!! trans('home.text-1') !!}</p>
+                                            <small class="btn btn-bh">{!! trans('home.guarantee') !!}</small>
                                             <p class="mt-1"></p>
-                                            <small class="btn btn-lx">Trả góp 0% lãi xuất</small>
+                                            <small class="btn btn-lx">{!! trans('home.installment') !!}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -86,10 +86,11 @@
                     <div class="mt-3">
                         <div class="home--product__view">
                             <a href="{{ route('category', ['slug' => $category->slug]) }}" class="float-right btn btn-custom btn-sm color--link mb-1">
-                                Xem tất cả
-                            </a>   
+                            {!! trans('home.view-all') !!}
+                            </a>
                         </div>
                     </div>
+                    
                 </div>
                 @endif
             @endif
@@ -116,7 +117,6 @@
     });
     $('.slick-prev').hide();
     $('.slick-next').hide();
-    // ssssssssss
     let indexOpen = 0;
 
 let btnTab = document.querySelectorAll('.nav-tab ul li button');

@@ -19,6 +19,8 @@ Route::post('home/addComment', 'HomeController@store');
 Route::get('/category/{slug}', 'HomeController@showCategory')->name('category');
 Route::get('/products/{slug}', 'HomeController@showProduct')->name('product');
 Route::get('/search', 'HomeController@search')->name('search');
+Route::get('/news', 'HomeController@showNewsIndex')->name('news');
+Route::get('/news/{slug}', 'HomeController@showNews')->name('news.showNews');
 
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/', 'CartController@index')->name('cart.index');
@@ -54,7 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
     // NewsOfEvent
     Route::resource('news', 'NewsController');
-    Route::get('/news-of-event/trashed', 'NewsController@trashed')->name('news-of-event.trashed');
+    Route::get('/new/trashed', 'NewsController@trashed')->name('new.trashed');
     Route::put('/news/{id}/restore', 'NewsController@restore')->name('news.restore');
     Route::delete('/news/{id}/forceDelete', 'NewsController@forceDelete')->name('news.forceDelete');
 

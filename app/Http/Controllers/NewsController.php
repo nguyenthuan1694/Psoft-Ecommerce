@@ -11,9 +11,21 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use App\Repositories\News\NewsRepository;
 
 class NewsController extends Controller
 {
+    /**
+     * @var NewsRepositoryInterface|\App\Repositories\Repository
+    */
+    protected $newsRepository;
+
+    public function __construct(NewsRepository $newsRepository)
+    {
+        $this->newsRepository = $newsRepository;
+    }
+
+
     /**
      * Display a listing of products.
      *
@@ -21,7 +33,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::paginate(config('common.pagination.backend'));
+        $news = $this->newsRepository->getNewsWidthPagination();
         return view('backend.news.index')->with('news', $news);
     }
 
@@ -43,11 +55,11 @@ class NewsController extends Controller
      */
     public function store(NewsStoreRequest $request)
     {
-        $news = News::create($request->except(['thumbnail']));
+        $news = $this->newsRepository->create($request->except(['thumbnail']));
         if ($request->hasFile('thumbnail')) {
             $file = $request->file('thumbnail');
-            $thumbnailName = generateProductImageName($file->getClientOriginalExtension());
-            $thumbnailPath = generateProductImagePath();
+            $thumbnailName = generateProductImageName(1,$file->getClientOriginalExtension());
+            $thumbnailPath = generateProductImagePath(1);
             $file->storeAs($thumbnailPath, $thumbnailName);
             $news->thumbnail = Storage::url($thumbnailPath . '/' .$thumbnailName);
             $news->save();
@@ -76,14 +88,15 @@ class NewsController extends Controller
      */
     public function update(NewsUpdateRequest $request, News $news)
     {
-        $news->update($request->except(['thumbnail']));
+        $codeImgNews = 'imgnews161994';
+        $this->newsRepository->update($request->id, $request->except(['thumbnail']));
         if ($request->hasFile('thumbnail')) {
-            if (file_exists(public_path() . $product->thumbnail)) {
-                unlink(public_path() . $product->thumbnail);
+            if (file_exists(public_path() . $news->thumbnail)) {
+                unlink(public_path() . $news->thumbnail);
             }
             $file = $request->thumbnail;
-            $thumbnailName = generateProductImageName($file->getClientOriginalExtension());
-            $thumbnailPath = generateProductImagePath();
+            $thumbnailName = generateProductImageName($codeImgNews,$file->getClientOriginalExtension());
+            $thumbnailPath = generateProductImagePath($codeImgNews);
             $file->storeAs($thumbnailPath, $thumbnailName);
             $news->thumbnail = Storage::url($thumbnailPath . '/' .$thumbnailName);
             $news->save();
@@ -110,8 +123,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        $newsData = News::where('id',$news['id'])->first()->delete();
-
+        $this->newsRepository->deleteNews($news['id']);
         return redirect()->back()->with('success', 'You have successfully move the news to trashed');
     }
 
@@ -122,9 +134,8 @@ class NewsController extends Controller
      */
     public function trashed()
     {
-        $news = News::onlyTrashed()->paginate(config('common.pagination.backend'));
+        $news = $this->newsRepository->trashedNews();
         return view('backend.news.trashed')->with('news', $news);
-       
     }
 
     /**
@@ -136,7 +147,7 @@ class NewsController extends Controller
      */
     public function restore(Request $request, $id)
     {
-        $news = News::onlyTrashed()->where('id', $id)->first();
+        $news = $this->newsRepository->restoreNews($id);
         $news->restore();
         return redirect()->back()->with('success', 'You have successfully restored the news');
     }
@@ -149,11 +160,10 @@ class NewsController extends Controller
      */
     public function forceDelete($id)
     {
-        $news = News::onlyTrashed()->where('id', $id)->first();
+        $news = $this->newsRepository->onlyTrashedNews($id);
         $news->forceDelete();
         return redirect()->back()->with('success', 'You have successfully deleted the news');
     }
-
 }
 
 

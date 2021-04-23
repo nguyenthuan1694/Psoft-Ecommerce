@@ -158,8 +158,8 @@ class ProductController extends Controller
                 unlink(public_path() . $product->thumbnail);
             }
             $file = $request->thumbnail;
-            $thumbnailName = generateProductImageName($file->getClientOriginalExtension());
-            $thumbnailPath = generateProductImagePath();
+            $thumbnailName = generateProductImageName($product->sku,$file->getClientOriginalExtension());
+            $thumbnailPath = generateProductImagePath($product->sku);
             $file->storeAs($thumbnailPath, $thumbnailName);
             $product->thumbnail = Storage::url($thumbnailPath . '/' .$thumbnailName);
             $product->save();
