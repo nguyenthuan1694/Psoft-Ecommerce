@@ -28,11 +28,11 @@
                                 <div class="row">
                                     <div class="col-md-5 cool-sm-5 introduce-product__img">
                                         <div class="product-img__same">
-                                            <a href="{{ route('news', ['slug' => $news->slug]) }}"><img src="{{ asset($news->thumbnail) }}" alt=""></a>
+                                            <a href="{{ route('news.showNews', ['slug' => $news->slug]) }}"><img src="{{ asset($news->thumbnail) }}" alt=""></a>
                                         </div>
                                     </div>
                                     <div class="introduce-product__content col-md-7 col-sm-7">
-                                        <a href="{{ route('news', ['slug' => $news->slug]) }}" class="introduce-product__text font-weight-bold">
+                                        <a href="{{ route('news.showNews', ['slug' => $news->slug]) }}" class="introduce-product__text font-weight-bold">
                                             {{ $news->title }}
                                         </a>
                                     </div>
