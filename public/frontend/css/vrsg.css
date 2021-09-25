@@ -386,7 +386,7 @@ span.qty-cart {
     box-shadow: 0 0 7px 0.5px rgba(0, 0, 0, 0.15);
     padding: 15px;
     position: absolute;
-    left: 25%;
+    right: 0;
     top: 100%;
     transform: rotateX(90deg);
     transform-origin: center top 0;

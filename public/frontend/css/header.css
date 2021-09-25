@@ -32,7 +32,7 @@
   
   .header li .a-li {
     display: block;
-    padding: 15px 30px;
+    padding: 15px 40px;
     border-right: 1px solid #f4f4f4;
     text-decoration: none;
     color: #fff;
@@ -140,14 +140,14 @@
     transform-origin: center top 0;
     transition: all 0.5s ease 0s;
     visibility: hidden;
-    width: 250px;
+    width: 230px;
     z-index: 999;
 }
 .main-menu {
     /* box-shadow: 1px 1px 1px #cccc; */
 }
 .sub-ul-menu-child {
-    top: 0;
+    top: 15% !important;
     right: -100%;
     left: inherit;
 }
@@ -230,7 +230,7 @@ ul.sub-ul-menu li:hover > a {
         transform-origin: center top 0;
         transition: all 0.5s ease 0s;
         visibility: hidden;
-        width: 250px;
+        width: 230px;
         z-index: 999;
     }
 }

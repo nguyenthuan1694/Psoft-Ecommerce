@@ -227,6 +227,7 @@
                         {{ csrf_field() }}
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="slug" value="{{ $product->slug }}">
+                            <input type="hidden" name="route-cmt" id="route-cmt" value="{{ route('home.store') }}">
                             <div class="form-group tinymce-wrap mt-3">
                                 <textarea placeholder="Hãy đặt câu hỏi, chúng tôi sẽ tư vấn giúp bạn..." name="description" class="tinymce" rows="3"></textarea>
                             </div>
@@ -447,7 +448,7 @@
                     </div>           
                 </div>
                 <div class="text-right mt-2 mb-4">
-                        <a href="#" class="text09 btn btn-km bg-color-white color-pink" onclick="saveComment(`+id+`,`+phone+`)" >Gửi phản hồi</a>
+                        <a href="javascript:;" class="text09 btn btn-km bg-color-white color-pink" onclick="saveComment(`+id+`,`+phone+`)" >Gửi phản hồi</a>
                 </div>
                 `;
 

@@ -161,6 +161,13 @@ class HomeController extends Controller
         return redirect()->route('product', [$request->slug])->with('success', 'You have successfully created a new product');
     }
 
+    public function show(Request $request)
+    {
+        dd($request->all());
+        $this->commentRepository->create($request->all());
+        return redirect()->route('product', [$request->slug])->with('success', 'You have successfully created a new product');
+    }
+
 
     public function showNewsIndex()
     {
